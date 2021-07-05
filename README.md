@@ -7,4 +7,4 @@
 * **Julieta Garibaldi** <- [Perfil Github](https://github.com/julieta-garibaldi)
 * **Juan Cruz Dubowez** <- [Perfil Github](https://github.com/JuanDubowez)
 * **Fede Ruiz Diaz** <- [Perfil Github](https://github.com/federuizdiaz1)
-* **Fede Ruiz Diaz** <- [Perfil Github](https://github.com/francorferreyra)
+* **Franco Roque Ferreyra** <- [Perfil Github](https://github.com/francorferreyra)
