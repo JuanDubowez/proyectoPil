@@ -8,4 +8,4 @@
 * **Juan Cruz Dubowez** <- [Perfil Github](https://github.com/JuanDubowez)
 * **Fede Ruiz Diaz** <- [Perfil Github](https://github.com/federuizdiaz1)
 * **Franco Roque Ferreyra** <- [Perfil Github](https://github.com/francorferreyra)
-* * **Gabriela Romina Castro** <- [Perfil Github](https://github.com/gabrielarominacastro)
+* **Gabriela Romina Castro** <- [Perfil Github](https://github.com/gabrielarominacastro)
