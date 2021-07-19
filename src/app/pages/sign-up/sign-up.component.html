@@ -1,108 +1,45 @@
-<main class="form-signin">
-  <div
-    class="
-      container-fluid
-      d-flex
-      justify-content-center
-      align-items-center
-      h-100
-    "
-  >
-    <div class="card p-3 text-center py-4">
-      <form>
+<div class="container-fluid d-flex justify-content-center align-items-center h-100">
+    <div class="box card p-3 text-center py-4">
         <h4 class="titulo">Crea tu cuenta</h4>
-
-        <div class="input-group mb-3">
-          <input
-            type="text"
-            class="form-control bg-primary"
-            placeholder="Nombre"
-            aria-label="Nombre"
-          />
-          <span></span>
-          <input
-            type="text"
-            class="form-control bg-primary"
-            placeholder="Apellido"
-            aria-label="Apellido"
-          />
-        </div>
-
-        <div class="input-group mb-3">
-          <input
-            type="text"
-            class="form-control bg-primary"
-            placeholder="DNI"
-            aria-label="DNI"
-          />
-          <span></span>
-          <select class="form-select text-white bg-primary" aria-label="Sexo">
-            <option selected>Sexo</option>
-            <option value="1">Femenino</option>
-            <option value="2">Masculino</option>
-            <option value="3">Otro</option>
-          </select>
-        </div>
-
-        <div>
-          <input
-            type="text"
-            class="form-control bg-primary"
-            id="floatingInput"
-            placeholder="Nacionalidad"
-          />
-        </div>
-
-        <div>
-          <input
-            type="date"
-            class="form-control bg-primary"
-            id="floatingInput"
-            placeholder="Fecha de Nacimiento"
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            class="form-control bg-primary"
-            id="floatingInput"
-            placeholder="Celular"
-          />
-        </div>
-        <div>
-          <input
-            type="email"
-            class="form-control bg-primary"
-            id="floatingInput"
-            placeholder="Mail"
-          />
-        </div>
-        <div>
-          <input
-            type="email"
-            class="form-control bg-primary"
-            id="floatingInput"
-            placeholder="Confirmar mail"
-          />
-        </div>
-        <div>
-          <input
-            type="password"
-            class="form-control bg-primary"
-            id="floatingPassword"
-            placeholder="Contraseña"
-          />
-        </div>
-
-        <button class="w-100 btn btn-lg btn-primary" type="submit">
-          Sign in
-        </button>
-
-        <div>
-          <span>Ya tienes una cuenta?</span>
-          <a href="#" class="text-decoration-none"> Iniciar sesión</a>
-        </div>
-      </form>
+        <form>
+            <div class="input-group casilla">
+                <input type="text" class="form-control bg-primary" placeholder="Nombre" aria-label="Nombre"/>
+                <span></span>
+                <input type="text" class="form-control bg-primary" placeholder="Apellido" aria-label="Apellido"/>
+            </div>
+            <div class="input-group">
+                <input type="text" class="form-control bg-primary" placeholder="DNI" aria-label="DNI"/>
+                <span></span>
+                <select class="form-select bg-primary text-white" aria-label="Sexo">
+                    <option selected>Sexo</option>
+                    <option value="1">Femenino</option>
+                    <option value="2">Masculino</option>
+                    <option value="3">Otro</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control bg-primary" placeholder="Nacionalidad"/>
+            </div>
+            <div class="form-group">
+                <input type="date" class="form-control bg-primary text-white" placeholder="Fecha de Nacimiento"/>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control bg-primary" placeholder="Celular"/>
+            </div>
+            <div class="input-group">
+                <input type="email" class="form-control bg-primary" placeholder="Mail" aria-label="Mail"/>
+                <span></span>
+                <input type="email" class="form-control bg-primary" placeholder="Confirmar mail" aria-label="Confirmar mail"/>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control bg-primary" placeholder="Contraseña"/>
+            </div>
+            <br>
+            <button class="w-100 btn-lg btn-primary" type="submit">
+             Registrarse
+            </button>
+            <span>Ya tienes una cuenta?</span><a href="#" class="text-decoration-none"> Iniciar sesión</a>
+        </form>
     </div>
-  </div>
-</main>
+</div>
+
