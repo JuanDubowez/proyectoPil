@@ -9,3 +9,4 @@
 * **Fede Ruiz Diaz** <- [Perfil Github](https://github.com/federuizdiaz1)
 * **Franco Roque Ferreyra** <- [Perfil Github](https://github.com/francorferreyra)
 * **Gabriela Romina Castro** <- [Perfil Github](https://github.com/gabrielarominacastro)
+* **Julia Ivana Rojas Soto** <- [Perfil Github](https://github.com/ivrojas)
