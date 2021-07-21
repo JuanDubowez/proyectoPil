@@ -1,0 +1,121 @@
+
+<div class="container-fluid d-flex justify-content-center align-items-center h-100">
+    <div class="box card p-3 py-4">
+        <h4 class="titulo">Crea tu cuenta</h4>
+        <form [formGroup]="form" (ngSubmit)="onEnviar($event)" novalidate>
+            <div class="form-group">
+                <input type="text" class="form-control casilla2" formControlName="name" placeholder="Nombre"/>
+                <div *ngIf="nameField?.errors  && nameField?.dirty" class="text-danger">
+                    <p *ngIf="nameField?.hasError('required')" >
+                      El nombre es requerido.
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control casilla2" formControlName="lastName" placeholder="Apellido"/>
+                <div *ngIf="lastNameField?.errors  && lastNameField?.dirty" class="text-danger">
+                    <p *ngIf="lastNameField?.hasError('required')" >
+                      El apellido es requerido.
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control casilla2" formControlName="dni" placeholder="DNI"/>
+                <small id="dnilHelp" class="form-text text-muted">  Ingresa tu número de DNI sin incluir los puntos.</small>
+                <div *ngIf="dniField?.errors  && dniField?.dirty" class="text-danger">
+                    <p *ngIf="dniField?.hasError('required')" >
+                      El DNI es requerido.
+                    </p>
+                    <p *ngIf="dniField?.hasError('minlength')">
+                        El formato del DNI debe ser válido.
+                    </p>
+                    <p *ngIf="dniField?.hasError('maxlength')">
+                        El formato del mail debe ser válido.
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <select class="custom-select form-select casilla2 text-white">
+                    <option selected>Sexo</option>
+                    <option value="1">Femenino</option>
+                    <option value="2">Masculino</option>
+                </select>
+                <small id="sexoHelp" class="form-text text-muted">Como figura en tu DNI.</small>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control casilla2" formControlName="nacionalidad" placeholder="Nacionalidad"/>
+            </div>
+            <div class="form-group">
+                <input type="date" class="form-control casilla2 text-white" formControlName="nacimiento" placeholder="Fecha de Nacimiento"/>
+                <div *ngIf="nacionalidadField?.errors  && nacionalidadField?.dirty" class="text-danger">
+                    <p *ngIf="nacionalidadField?.hasError('required')" >
+                      La nacionalidad es requerida.
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control casilla2" formControlName="telefono" placeholder="Celular"/>
+                <small id="telefonolHelp" class="form-text text-muted">Ingresá el código de área sin el 0 y el número sin el 15. Por ejemplo, para Córdoba 3515111111.</small>
+                <div *ngIf="telefonoField?.errors  && telefonoField?.dirty" class="text-danger">
+                    <p *ngIf="telefonoField?.hasError('required')" >
+                      El teléfono es requerido.
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control casilla2" formControlName="mail" placeholder="Mail"/>
+                <div *ngIf="mailField?.errors  && mailField?.dirty" class="text-danger">
+                    <p *ngIf="mailField?.hasError('required')" >
+                      El mail es requerido.
+                    </p>
+                    <p *ngIf="mailField?.hasError('email')">
+                      El formato del mail debe ser válido.
+                    </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control casilla2" formControlName="checkMail" placeholder="Confirmar mail"/>
+                <div *ngIf="checkMailField?.errors  && checkMailField?.dirty" class="text-danger">
+                    <p *ngIf="checkMailField?.hasError('required')" >
+                      El mail es requerido.
+                    </p>
+                    <p *ngIf="mailField?.hasError('email')">
+                      El formato del mail debe ser válido.
+                    </p>
+                    <p *ngIf="checkMailDifferent" >
+                        Los mails deben ser iguales.
+                      </p>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control casilla2" formControlName="contrasena" placeholder="Contraseña"/>
+                <small id="passwordlHelp" class="form-text text-muted">Debe tener entre 8 y 15 caracteres.</small>
+                <div *ngIf="passField?.errors  && passField?.dirty" class="text-danger">
+                    <p *ngIf="passField?.hasError('required')" >
+                      La contraeña es requerida.
+                    </p>
+                    <p *ngIf="passField?.hasError('minlength')">
+                        La contraseña debe terner al menos 8 caracteres.
+                    </p>
+                    <p *ngIf="passField?.hasError('maxlength')">
+                        La contraseña debe terner como máximo 15 caracteres.
+                    </p>
+                </div>
+                
+            </div>
+            <br>
+            <div class="custom-file">
+                <small id="filelHelp" class="form-text text-muted">Para terminar el registro es necesario que adjunte foto del frente y reverso de su dni.</small><br>
+                <input type="file" class="custom-file-input" id="customFile">
+              </div>
+            <br>
+            <button class="w-100 btn-lg boton text-white" type="submit">
+             Registrarse
+            </button>
+            <span>Ya tienes una cuenta?</span><a href="#" class="text-decoration-none"> Iniciar sesión</a>
+        </form>
+    </div>
+</div>
+
+
+
