@@ -1,0 +1,6 @@
+.image{
+    background-size:cover; 
+    width:auto;
+    background-image:url('/src/assets/img/fondo.jpg');
+    background-position:50% 50%;
+  }
