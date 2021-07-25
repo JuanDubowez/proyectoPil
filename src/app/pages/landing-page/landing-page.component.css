@@ -1,0 +1,15 @@
+footer {
+  background-color: black;
+  position: absolute;
+  bottom:0;
+  width: 100%;
+  height: 40px;
+  color: white;
+}
+
+
+.px-3{
+  text-align: center;
+  justify-content: center;
+}
+
