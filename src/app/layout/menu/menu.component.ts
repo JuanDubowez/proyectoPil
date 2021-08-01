@@ -15,14 +15,23 @@ export class MenuComponent implements OnInit {
 
 
 openNav() {
-// let v=document.getElementById("mySidebar").style.width = "250px";
-//   document.getElementById("main").style.marginLeft = "250px";
+ let doc=document.getElementById("mySidebar");
+ let doc1=document.getElementById("main");
+ if(doc!==null && doc1!==null){
+  doc.style.width = "313px";
+  doc1.style.marginLeft = "250px";
+ }
+
 }
 
-// closeNav() {
-//   document.getElementById("mySidebar").style.width = "0";
-//   document.getElementById("main").style.marginLeft= "0";
-// }
+ closeNav() {
+  let doc=  document.getElementById("mySidebar");
+  let doc1= document.getElementById("main");
+  if(doc!==null && doc1!==null){
+    doc.style.width = "0";
+    doc1.style.marginLeft= "0";
+  }
+ }
 
 
 }

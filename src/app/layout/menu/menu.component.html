@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html>
-<!-- <head>
+<head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-</head> -->
+</head>
 <body>
+<!-- <div class="wrapper"> -->
+  <div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">×</a>
+    <a href="#">Transferencias</a>
+    <a href="#">Otros Servicios</a>
+    <a href="#">Quienes Somos</a>
+    <a href="#">Salir</a>
+  </div>
 
-<div id="mySidebar" class="sidebar">
-  <a href="javascript:void(0)" class="closebtn" click="closeNav()">×</a>
-  <a href="#">Transferencias</a>
-  <a href="#">Otros Servicios</a>
-  <a href="#">Quienes Somos</a>
-  <a href="#">Salir</a>
-</div>
+  <div id="main">
+    <button class="openbtn" (click)="openNav()">☰</button>
+  </div>
+<!-- </div> -->
 
-<div id="main">
-  <button class="openbtn" click="openNav()">☰</button>
-</div>
 </body>
 </html>
