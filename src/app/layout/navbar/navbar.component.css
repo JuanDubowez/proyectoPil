@@ -1,3 +1,7 @@
 .nav {
     background-color: #2182C9;
 }
+
+.fa{
+  display: inline-block !important;
+}
