@@ -3,7 +3,7 @@
   border-radius: 0.5rem;
   padding: 2rem;
   margin: 5rem auto;
-  height: auto; 
+  height: auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 .login button{
@@ -31,14 +31,14 @@ label {
 }
 
 
-input:focus,  
+input:focus,
 input:active {
   background-color: #2182C9;
   color: #ffff;
   border-color: #ffff;
 }
 
-button {
+button,a {
   background-color: #2182C9;
   width: 10rem;
   height: 3rem;
