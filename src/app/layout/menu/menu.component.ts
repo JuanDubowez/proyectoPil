@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-menu',
@@ -6,13 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-
-  constructor() { }
+  myClass :boolean=false;
+  constructor(public dataService:DataService) { }
 
   ngOnInit(): void {
   }
 
-
+cambiar(){
+  this.myClass=!this.myClass;
+  // this.dataService.menuEnabled=this.myClass;
+}
 
 openNav() {
  let doc=document.getElementById("mySidebar");
