@@ -10,22 +10,23 @@
   <div id="mySidebar" class="sidebar">
     <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">×</a><br>
     <div>
-      <img src="../assets/img/bitcoin.png" alt="PILMoney" style="width: 150px;
-      display: flex;
-      margin: -64px 0px 37px 22px;">
+      <!-- <img src="../assets/img/bitcoin.png" alt="PILMoney" style="width: 150px; -->
+      <a class="fa fa-fw fa-home" style="width: 150px;
+      display: flex;font-size: 90px;
+      margin: -64px 0px 37px 22px;" title="Inicio"></a>
     </div>
 
     <hr style="color:white">
-    <a href="#"><i class="fa fa-money"></i>Tu dinero</a>
-    <a href="#"><i class="fa fa-handshake-o"></i>Actividad</a>
-    <a href="#"><i class="fa fa-bank"></i>Otros Servicios</a>
-    <a href="#"><i class="fa fa-group"></i>Quienes Somos</a><br>
+    <a href="#"><i class="fa fa-money" style="cursor: pointer;"></i>Tu dinero</a>
+    <a href="#"><i class="fa fa-handshake-o" style="cursor: pointer;"></i>Actividad</a>
+    <a href="#"><i class="fa fa-bank" style="cursor: pointer;"></i>Otros Servicios</a>
+    <a href="#"><i class="fa fa-group" style="cursor: pointer;"></i>Quienes Somos</a><br>
     <hr style="color:white"><br>
-    <a href="#"><i class="fa fa-sign-out"></i>Salir</a>
+    <a href="#"><i class="fa fa-sign-out" style="cursor: pointer;"></i>Salir</a>
   </div>
 
-  <div id="main">
-    <button class="openbtn" (click)="openNav()">☰</button>
+  <div id="main" style="cursor: pointer;">
+    <button class="openbtn" (click)="openNav()"><i class="fa fa-bars"></i></button>
   </div>
 <!-- </div> -->
 
