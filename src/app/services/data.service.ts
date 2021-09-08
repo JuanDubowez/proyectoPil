@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-menuEnabled :boolean=false;
+menuEnabled :boolean=true;
+bandera$=new EventEmitter<boolean>(); //observable
   constructor() { }
 }

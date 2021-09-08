@@ -11,6 +11,7 @@ export class MenuComponent implements OnInit {
   constructor(public dataService:DataService) { }
 
   ngOnInit(): void {
+   this.myClass=this.dataService.menuEnabled;
   }
 
 cambiar(){
