@@ -19,6 +19,20 @@
                     <div class="form-floating">
                         <input type="password" class="form-control" formControlName="password" placeholder="Ingrese su contraseña"/>
                         <label for="floatingInput"><i class="fa fa-unlock"></i>  Contraseña</label>
+                        <div *ngIf="loginForm.controls.password.touched &&  loginForm.controls.password?.dirty && loginForm.controls.password.errors?.password" style="color: red; margin: 6px;">
+                          Por favor, ingrese una contraseña valida
+                      </div>
+                      <div *ngIf="loginForm.controls.password.errors?.password"  && class="text-danger">
+                        <p *ngIf="loginForm.controls.password?.hasError('required')" >
+                          La contraeña es requerida.
+                        </p>
+                        <p *ngIf="loginForm.controls.password?.hasError('minlength')">
+                            La contraseña debe terner al menos 8 caracteres.
+                        </p>
+                        <p *ngIf="loginForm.controls.password?.hasError('maxlength')">
+                            La contraseña debe terner como máximo 15 caracteres.
+                        </p>
+                    </div>
                     </div>
                 </div>
 

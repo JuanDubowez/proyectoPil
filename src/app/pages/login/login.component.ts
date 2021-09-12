@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DataService } from 'src/app/services/data.service';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -11,10 +12,12 @@ import { DataService } from 'src/app/services/data.service';
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private dataService:DataService) {
+  constructor(private http:HttpClient,
+              private dataService:DataService) {
+
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required,Validators.minLength(8), Validators.maxLength(15)]),
     });
   }
 
