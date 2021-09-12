@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DataService } from 'src/app/services/data.service';
-import {HttpClient} from '@angular/common/http';
+
 
 @Component({
   selector: 'app-login',
@@ -12,8 +12,7 @@ import {HttpClient} from '@angular/common/http';
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private http:HttpClient,
-              private dataService:DataService) {
+  constructor(private dataService:DataService) {
 
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -28,6 +27,14 @@ export class LoginComponent {
   }
   _v() {
     return this.loginForm.value;
+  }
+
+  get passField() {
+    return this.loginForm.get("password");
+  }
+
+  get passInvalid() {
+    return this.passField?.touched && !this.passField.valid;
   }
 
   cambiarEstado(){
