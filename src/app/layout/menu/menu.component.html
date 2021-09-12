@@ -5,9 +5,7 @@
 
 </head>
 <body>
-<!-- <div class="wrapper"> -->
-
-  <div id="mySidebar" class="sidebar">
+ <div id="mySidebar" class="sidebar">
     <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">×</a><br>
     <div>
       <!-- <img src="../assets/img/bitcoin.png" alt="PILMoney" style="width: 150px; -->
@@ -15,20 +13,17 @@
       display: flex;font-size: 90px;
       margin: -64px 0px 37px 22px;" title="Inicio"></a>
     </div>
-
     <hr style="color:white">
+    <a href="#"><i class="fa fa-user" style="cursor: pointer;"></i>Mi Perfil</a>
     <a href="#"><i class="fa fa-money" style="cursor: pointer;"></i>Tu dinero</a>
     <a href="#"><i class="fa fa-handshake-o" style="cursor: pointer;"></i>Actividad</a>
     <a href="#"><i class="fa fa-bank" style="cursor: pointer;"></i>Otros Servicios</a>
     <a href="#"><i class="fa fa-group" style="cursor: pointer;"></i>Quienes Somos</a><br>
-    <hr style="color:white"><br>
+    <hr style="color:white"><br><br><br>
     <a href="#"><i class="fa fa-sign-out" style="cursor: pointer;"></i>Salir</a>
   </div>
-
   <div id="main" style="cursor: pointer;">
-    <button class="openbtn" (click)="openNav()"><i class="fa fa-bars"></i></button>
+    <button class="openbtn" (click)="openNav()" [ngClass]="this.myClass ? 'fa fa-bars':''"><i class=""></i></button>
   </div>
-<!-- </div> -->
-
 </body>
 </html>
