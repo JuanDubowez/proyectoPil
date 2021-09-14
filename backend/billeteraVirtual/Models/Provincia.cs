@@ -7,10 +7,10 @@ namespace billeteraVirtual.Models
 {
     public class Provincia
     {
-        private string id_provincia;
+        private int id_provincia;
         private string provincia;
 
-        public Provincia(string id_provincia, string provinciaa)
+        public Provincia(int id_provincia, string provinciaa)
         {
             Id_provincia = id_provincia;
             Provinciaa = provinciaa;
@@ -21,7 +21,7 @@ namespace billeteraVirtual.Models
 
         }
 
-        public string Id_provincia { get => id_provincia; set => id_provincia = value; }
+        public int Id_provincia { get => id_provincia; set => id_provincia = value; }
         public string Provinciaa{ get => provincia; set => provincia = value; }
     }
 }

@@ -9,9 +9,9 @@ namespace billeteraVirtual.Models
     {
         private int id_telefono;
         private int id_cliente;
-        private int telefono;
+        private string telefono;
 
-        public Telefono(int id_telefono, int id_cliente, int telefono)
+        public Telefono(int id_telefono, int id_cliente, string telefono)
         {
             Id_telefono = id_telefono;
             Id_cliente = id_cliente;
@@ -25,6 +25,6 @@ namespace billeteraVirtual.Models
 
         public int Id_telefono { get => id_telefono; set => id_telefono = value; }
         public int Id_cliente { get => id_cliente; set => id_cliente = value; }
-        public int Telefonoo { get => telefono; set => telefono = value; }
+        public string Telefonoo { get => telefono; set => telefono = value; }
     }
 }

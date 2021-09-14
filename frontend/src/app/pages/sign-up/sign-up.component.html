@@ -2,68 +2,88 @@
 <div class="container-fluid d-flex justify-content-center align-items-center h-100">
     <div class="box card p-3 py-4">
         <h4 class="titulo">Crea tu cuenta</h4>
-        <form [formGroup]="form" (ngSubmit)="onEnviar($event)" novalidate>
-            <div class="form-group">
-                <input type="text" class="form-control casilla2" formControlName="name" placeholder="Nombre"/>
+        <form [formGroup]="form" (ngSubmit)="onEnviar($event,usuario)" novalidate>
+            <div>
+                <input type="text" class="form-control casilla2" placeholder="Nombre" formControlName="name" [(ngModel)]="usuario.nombre" >
                 <div *ngIf="nameField?.errors  && nameField?.dirty" class="text-danger">
                     <p *ngIf="nameField?.hasError('required')" >
                       El nombre es requerido.
                     </p>
                 </div>
             </div>
-            <div class="form-group">
-                <input type="text" class="form-control casilla2" formControlName="lastName" placeholder="Apellido"/>
+
+            <div>
+                <input type="text" class="form-control casilla2" placeholder="Apellido" formControlName="lastName" [(ngModel)]="usuario.apellido"/>
                 <div *ngIf="lastNameField?.errors  && lastNameField?.dirty" class="text-danger">
                     <p *ngIf="lastNameField?.hasError('required')" >
                       El apellido es requerido.
                     </p>
                 </div>
             </div>
-            <div class="form-group">
-                <input type="text" class="form-control casilla2" formControlName="dni" placeholder="DNI"/>
+
+            <div class>
+                <input type="date" class="form-control casilla2 text-white" placeholder="Fecha de Nacimiento" formControlName="nacimiento"  [(ngModel)]="usuario.fecha_de_nacimiento"/>
+                <div *ngIf="nacimientoField?.errors  && nacimientoField?.dirty" class="text-danger">
+                    <p *ngIf="nacimientoField?.hasError('required')" >
+                      La fecha de nacimiento es requerida.
+                    </p>
+                </div>
+            </div>
+
+            <div>
+                <input type="number" class="form-control casilla2" placeholder="DNI" formControlName="dni" [(ngModel)]="usuario.documento"/>
                 <small id="dnilHelp" class="form-text text-muted">  Ingresa tu número de DNI sin incluir los puntos.</small>
                 <div *ngIf="dniField?.errors  && dniField?.dirty" class="text-danger">
                     <p *ngIf="dniField?.hasError('required')" >
                       El DNI es requerido.
                     </p>
-                    <p *ngIf="dniField?.hasError('minlength')">
-                        El formato del DNI debe ser válido.
+                </div>
+            </div>
+
+            <div class>
+                <input type="text" class="form-control casilla2" placeholder="Cuil" formControlName="cuil" [(ngModel)]="usuario.cuil"/>
+                <div *ngIf="cuilField?.errors  && cuilField?.dirty" class="text-danger">
+                    <p *ngIf="cuilField?.hasError('required')" >
+                      El cuil es requerido.
                     </p>
-                    <p *ngIf="dniField?.hasError('maxlength')">
-                        El formato del mail debe ser válido.
+                    <p *ngIf="cuilField?.hasError('minlength')">
+                        El formato del cuil debe ser válido.
+                    </p>
+                    <p *ngIf="cuilField?.hasError('maxlength')">
+                        El formato del cuil debe ser válido.
                     </p>
                 </div>
             </div>
-            <div class="form-group">
-                <select class="custom-select form-select casilla2 text-white">
-                    <option selected>Sexo</option>
-                    <option value="1">Femenino</option>
-                    <option value="2">Masculino</option>
-                </select>
-                <small id="sexoHelp" class="form-text text-muted">Como figura en tu DNI.</small>
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control casilla2" formControlName="nacionalidad" placeholder="Nacionalidad"/>
-            </div>
-            <div class="form-group">
-                <input type="date" class="form-control casilla2 text-white" formControlName="nacimiento" placeholder="Fecha de Nacimiento"/>
+
+            <div>
+                <input type="text" class="form-control casilla2" placeholder="Nacionalidad" formControlName="nacionalidad" [(ngModel)]="usuario.nacionalidad"/>
                 <div *ngIf="nacionalidadField?.errors  && nacionalidadField?.dirty" class="text-danger">
                     <p *ngIf="nacionalidadField?.hasError('required')" >
                       La nacionalidad es requerida.
                     </p>
                 </div>
             </div>
-            <div class="form-group">
-                <input type="text" class="form-control casilla2" formControlName="telefono" placeholder="Celular"/>
-                <small id="telefonolHelp" class="form-text text-muted">Ingresá el código de área sin el 0 y el número sin el 15. Por ejemplo, para Córdoba 3515111111.</small>
-                <div *ngIf="telefonoField?.errors  && telefonoField?.dirty" class="text-danger">
-                    <p *ngIf="telefonoField?.hasError('required')" >
-                      El teléfono es requerido.
+
+            <div>
+                <input type="text" class="form-control casilla2" placeholder="Genero" formControlName="sexo" [(ngModel)]="usuario.genero"/>
+                <div *ngIf="sexoField?.errors  && sexoField?.dirty" class="text-danger">
+                    <p *ngIf="sexoField?.hasError('required')" >
+                        El genero es requerido.
                     </p>
                 </div>
             </div>
-            <div class="form-group">
-                <input type="email" class="form-control casilla2" formControlName="mail" placeholder="Mail"/>
+
+            <div>
+                <input type="number" class="form-control casilla2" placeholder="Localidad" formControlName="localidad" [(ngModel)]="usuario.id_localidad"/>
+                <div *ngIf="localidadField?.errors  && localidadField?.dirty" class="text-danger">
+                    <p *ngIf="localidadField?.hasError('required')" >
+                       La localidad es requerida.
+                    </p>
+                </div>
+            </div>
+
+            <div class>
+                <input type="email" class="form-control casilla2" placeholder="Mail" formControlName="mail" [(ngModel)]="usuario.mail"/>
                 <div *ngIf="mailField?.errors  && mailField?.dirty" class="text-danger">
                     <p *ngIf="mailField?.hasError('required')" >
                       El mail es requerido.
@@ -73,8 +93,9 @@
                     </p>
                 </div>
             </div>
-            <div class="form-group">
-                <input type="email" class="form-control casilla2" formControlName="checkMail" placeholder="Confirmar mail"/>
+
+            <div class>
+                <input type="email" class="form-control casilla2" placeholder="Confirmar mail" formControlName="checkMail"/>
                 <div *ngIf="checkMailField?.errors  && checkMailField?.dirty" class="text-danger">
                     <p *ngIf="checkMailField?.hasError('required')" >
                       El mail es requerido.
@@ -87,8 +108,9 @@
                       </p>
                 </div>
             </div>
-            <div class="form-group">
-                <input type="password" class="form-control casilla2" formControlName="contrasena" placeholder="Contraseña"/>
+
+            <div class>
+                <input type="password" class="form-control casilla2" placeholder="Contraseña" formControlName="contrasena" [(ngModel)]="usuario.contrasena"/>
                 <small id="passwordlHelp" class="form-text text-muted">Debe tener entre 8 y 15 caracteres.</small>
                 <div *ngIf="passField?.errors  && passField?.dirty" class="text-danger">
                     <p *ngIf="passField?.hasError('required')" >

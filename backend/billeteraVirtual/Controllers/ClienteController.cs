@@ -4,16 +4,19 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using billeteraVirtual.Models;
 
 namespace billeteraVirtual.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ClienteController : ApiController
     {
         // GET: api/Cliente
-        public IEnumerable<string> Get()
+        public IEnumerable<Clientes> Get()
         {
-            return new string[] { "value1", "value2" };
+            GestorClientes gPersona = new GestorClientes();
+            return gPersona.ObtenerPersonas();
         }
 
         // GET: api/Cliente/5
@@ -24,8 +27,13 @@ namespace billeteraVirtual.Controllers
         }
 
         // POST: api/Cliente
-        public void Post([FromBody]string value)
+        public Clientes Post([FromBody]Clientes value)
         {
+            GestorClientes gPersona = new GestorClientes();
+            gPersona.AgregarPersona(value);
+            return value;
+
+
         }
 
         // PUT: api/Cliente/5
