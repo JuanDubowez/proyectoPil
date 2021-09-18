@@ -7,6 +7,8 @@ import { LayoutModule } from './layout/layout.module';
 import { PagesModule } from './pages/pages.module';
 import { ClienteService } from './servicios/cliente.service';
 import { HttpClientModule } from '@angular/common/http';
+import { LocalidadService } from './servicios/localidad.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,9 +19,10 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     LayoutModule,
     PagesModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
-  providers: [ClienteService],
+  providers: [ClienteService,LocalidadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

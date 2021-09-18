@@ -7,12 +7,18 @@ import { Observable } from 'rxjs';
 })
 export class ClienteService {
   url="https://localhost:44332/api/Cliente";
+  url2="https://localhost:44332/api/Cuenta";
 
   constructor(private http:HttpClient) { }
 
-  onCrearRegistro(usuario:Persona):Observable<Persona>{
+  onCrearRegistro(usuario:Persona):Observable<any>{
     return this.http.post<Persona>(this.url, usuario);
   }
+
+  onCrearCuenta(cuenta:Cuenta):Observable<Cuenta>{
+    return this.http.post<Cuenta>(this.url2, cuenta);
+  }
+
 
 }
 
@@ -30,4 +36,13 @@ export class Persona
   contrasena:string="";
   imagen_delantera:string="Si";
   imagen_trasera:string="Si";
+}
+
+export class Cuenta
+{
+  id_cliente:number=0;
+  cvu:string="";
+  numero_de_cuenta:string="";
+  saldo:number=0;
+  id_tipo_cuenta=1;
 }

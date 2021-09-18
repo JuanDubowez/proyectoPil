@@ -55,31 +55,41 @@
                 </div>
             </div>
 
-            <div>
-                <input type="text" class="form-control casilla2" placeholder="Nacionalidad" formControlName="nacionalidad" [(ngModel)]="usuario.nacionalidad"/>
-                <div *ngIf="nacionalidadField?.errors  && nacionalidadField?.dirty" class="text-danger">
-                    <p *ngIf="nacionalidadField?.hasError('required')" >
-                      La nacionalidad es requerida.
-                    </p>
-                </div>
+            <div class="form-group">
+                <select class="custom-select form-select casilla2 text-white" (change)="onSelectNacionalidad($any($event.target).value)">
+                    <option selected>Nacionalidad</option>
+                    <option value="Argentina">Argentina</option>
+                    <option value="Boliviana">Boliviana</option>
+                    <option value="Brasilera">Brasilera</option>
+                    <option value="Chilena">Chilena</option>
+                    <option value="Paraguaya">Paraguaya</option>
+                    <option value="Uruguaya">Uruguaya</option>
+                </select>
+            </div>   
+
+            <div class="form-group">
+                <select class="custom-select form-select casilla2 text-white" (change)="onSelectGenero($any($event.target).value)">
+                    <option selected>Genero</option>
+                    <option value="Femenino">Femenino</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Otro">Otro</option>
+                </select>
+            </div>       
+
+            <div class="form-group">
+                <select class="custom-select form-select casilla2 text-white" (change)="onSelect($any($event.target).value)">
+                    <option *ngFor="let prov of provincias" value={{prov.Id_provincia}}>
+                        {{prov.Provinciaa}}
+                    </option>
+                </select>
             </div>
 
-            <div>
-                <input type="text" class="form-control casilla2" placeholder="Genero" formControlName="sexo" [(ngModel)]="usuario.genero"/>
-                <div *ngIf="sexoField?.errors  && sexoField?.dirty" class="text-danger">
-                    <p *ngIf="sexoField?.hasError('required')" >
-                        El genero es requerido.
-                    </p>
-                </div>
-            </div>
-
-            <div>
-                <input type="number" class="form-control casilla2" placeholder="Localidad" formControlName="localidad" [(ngModel)]="usuario.id_localidad"/>
-                <div *ngIf="localidadField?.errors  && localidadField?.dirty" class="text-danger">
-                    <p *ngIf="localidadField?.hasError('required')" >
-                       La localidad es requerida.
-                    </p>
-                </div>
+            <div class="form-group" *ngIf="mostrar_localidades">
+                <select class="custom-select form-select casilla2 text-white" (change)="onSelectLocalidad($any($event.target).value)">
+                    <option *ngFor="let loc of localidades" value={{loc.Id_localidad}}>
+                        {{loc.Nombre}}
+                    </option>
+                </select>
             </div>
 
             <div class>

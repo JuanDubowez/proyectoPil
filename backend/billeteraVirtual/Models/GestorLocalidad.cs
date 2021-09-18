@@ -27,5 +27,37 @@ namespace billeteraVirtual.Models
                 comm.ExecuteNonQuery();
             }
         }
+
+        public List<Localidad> ObtenerLocalidades()
+        {
+            List<Localidad> lista = new List<Localidad>();
+            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+
+            using (SqlConnection conn = new SqlConnection(StrConn))
+            {
+                conn.Open();
+
+                SqlCommand comm = conn.CreateCommand();
+                comm.CommandText = "obtener_localidades";
+                comm.CommandType = CommandType.StoredProcedure;
+
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    int id_localidad = dr.GetInt32(0);
+                    string nombre = dr.GetString(1).Trim();
+                    int cosfigo_postal = dr.GetInt32(2);
+                    int id_provincia = dr.GetInt32(3);
+
+
+                    Localidad localidad = new Localidad(id_localidad, nombre, cosfigo_postal, id_provincia);
+                    lista.Add(localidad);
+                }
+
+                dr.Close();
+            }
+
+            return lista;
+        }
     }
 }
