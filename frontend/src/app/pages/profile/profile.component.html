@@ -1,0 +1,74 @@
+<div class="container-fluid d-flex justify-content-center align-items-center h-100">
+  <div class="box card p-3 py-4">
+      <h4 class="titulo">Actualizar Datos Perfil</h4>
+      <form [formGroup]="formu"  novalidate>
+          <div>
+              <input type="text" class="form-control casilla2" placeholder="Nombre" formControlName="name" />
+              <div *ngIf="nameField?.errors  && nameField?.dirty" class="text-danger">
+                  <p *ngIf="nameField?.hasError('required')" >
+                    El nombre es requerido.
+                  </p>
+              </div>
+          </div>
+
+          <div>
+              <input type="text" class="form-control casilla2" placeholder="Apellido" formControlName="lastName" />
+              <div *ngIf="lastNameField?.errors  && lastNameField?.dirty" class="text-danger">
+                  <p *ngIf="lastNameField?.hasError('required')" >
+                    El apellido es requerido.
+                  </p>
+              </div>
+          </div>
+
+          <div class>
+              <input type="date" class="form-control casilla2 text-white" placeholder="Fecha de Nacimiento" formControlName="nacimiento" />
+              <div *ngIf="nacimientoField?.errors  && nacimientoField?.dirty" class="text-danger">
+                  <p *ngIf="nacimientoField?.hasError('required')" >
+                    La fecha de nacimiento es requerida.
+                  </p>
+              </div>
+          </div>
+
+          <div>
+              <input type="number" class="form-control casilla2" placeholder="DNI" formControlName="dni" />
+              <small id="dnilHelp" class="form-text text-muted">  Ingresa tu número de DNI sin incluir los puntos.</small>
+              <div *ngIf="dniField?.errors  && dniField?.dirty" class="text-danger">
+                  <p *ngIf="dniField?.hasError('required')" >
+                    El DNI es requerido.
+                  </p>
+              </div>
+          </div>
+
+          <div class="form-group">
+              <select class="custom-select form-select casilla2 text-white">
+                  <option selected>Nacionalidad</option>
+                  <option value="Argentina">Argentina</option>
+                  <option value="Boliviana">Boliviana</option>
+                  <option value="Brasilera">Brasilera</option>
+                  <option value="Chilena">Chilena</option>
+                  <option value="Paraguaya">Paraguaya</option>
+                  <option value="Uruguaya">Uruguaya</option>
+              </select>
+          </div>
+
+          <div class="form-group">
+              <select class="custom-select form-select casilla2 text-white">
+                  <option selected>Genero</option>
+                  <option value="Femenino">Femenino</option>
+                  <option value="Masculino">Masculino</option>
+                  <option value="Otro">Otro</option>
+              </select>
+          </div>
+
+          <br>
+          <div class="custom-file">
+              <small id="filelHelp" class="form-text text-muted">Para terminar el registro es necesario que adjunte foto del frente y reverso de su dni.</small><br>
+              <input type="file" class="custom-file-input" id="customFile">
+            </div>
+          <br>
+          <button class="w-100 btn-lg boton text-white" type="submit">
+           Actualizar Perfil
+          </button>
+      </form>
+  </div>
+</div>
