@@ -1,7 +1,10 @@
-.nav {
-    background-color: #2182C9;
-}
+.navbar {
+    background-color: transparent;
+  }
 
 .fa{
   display: inline-block !important;
+}
+.rounded-pill{
+  background-color:#2182C9;
 }
