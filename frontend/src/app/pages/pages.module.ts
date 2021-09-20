@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { HomeComponent } from './home/home.component';
 import { MovimientosComponent } from './movimientos/movimientos.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { MovimientosComponent } from './movimientos/movimientos.component';
     SignUpComponent,
     LandingPageComponent,
     HomeComponent,
-    MovimientosComponent
+    MovimientosComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule, FormsModule, ReactiveFormsModule,

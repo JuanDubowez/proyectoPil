@@ -6,15 +6,63 @@ footer {
   height: 40px;
   color: white;
 }
+img:hover{
+  transform: translateY(-5px);
+}
+.img1{
+  clip-path:polygon(0 0, 100% 0,100% 0,0 0) ;
+  height: 300px;
+  width: 400px;
+  transition: 0.5s;
+  animation: show 2s 1s forwards;
+}
+.img2{
+  clip-path:polygon(0 0, 100% 0,100% 0,0 0) ;
+  height: 300px;
+  width: 400px;
+  transition: 0.5s;
+  animation: show 2s 3.5s forwards;
+}
+.img3{
+  clip-path:polygon(0 0, 100% 0,100% 0,0 0) ;
+  height: 300px;
+  width: 400px;
+  transition: 0.5s;
+  animation: show 2s 6s forwards;
+}
+.text1{
+  clip-path:polygon(0 100%, 100% 100%,100% 100%,0 100%) ;
+  transform: translate(-50%);
+  animation: show 1.5s forwards, move 1s 1s forwards;
+  z-index: 1;
+}
 
+.text2{
+  clip-path:polygon(0 100%, 100% 100%,100% 100%,0 100%) ;
+  transform: translate(50%);
+  animation: show 1.5s 1.8s forwards, move 1s 3s forwards;
+  z-index: 1;
+}
 
+.text3{
+  clip-path:polygon(0 100%, 100% 100%,100% 100%,0 100%) ;
+  transform: translate(-50%);
+  animation: show 1.5s 4.5s forwards, move 1s 5.5s forwards;
+  z-index: 1;
+}
+@keyframes show{
+  to{
+    clip-path: polygon(0 0,100% 0,100% 100%, 0 100%);
+  }
+}
+@keyframes move{
+  to{
+    transform: translate(0);
+    }
+}
 .px-3{
   text-align: center;
   justify-content: center;
 }
 
-.imagen{
-  width: 856px;
-  /* height:auto; */
-  /* margin-bottom: 20rem; */
-}
+

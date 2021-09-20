@@ -1,8 +1,5 @@
-
-.image{
-    background-size:cover; width:auto;
-    background-image:url('../assets/img/fondo.jpeg');
-    background-position:50% 50%;
-    /* margin-top: 50rem; */
-  }
+.container{
+    max-width: none !important;
+    height: inherit;
+}
 
