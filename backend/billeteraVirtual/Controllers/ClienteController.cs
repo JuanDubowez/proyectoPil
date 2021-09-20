@@ -20,10 +20,10 @@ namespace billeteraVirtual.Controllers
         }
 
         // GET: api/Cliente/5
-        public Clientes Get(int id)
+        public int Get(string cuil)
         {
             GestorClientes gestorPersona = new GestorClientes();
-            return gestorPersona.ObtenerPersona(id);
+            return gestorPersona.ObtenerId(cuil);
         }
 
         // POST: api/Cliente

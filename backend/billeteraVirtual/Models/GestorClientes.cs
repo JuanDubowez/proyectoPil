@@ -151,6 +151,36 @@ namespace billeteraVirtual.Models
             }
         }
 
+        public int ObtenerId(string cuil)
+        {
+            int id = 0;
+            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+
+            using (SqlConnection conn = new SqlConnection(StrConn))
+            {
+                conn.Open();
+
+                SqlCommand comm = conn.CreateCommand();
+                comm.CommandText = "obtener_id";
+                comm.CommandType = CommandType.StoredProcedure;
+                comm.Parameters.Add(new SqlParameter("@cuil", cuil));
+
+                SqlDataReader dr = comm.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    int id_cliente = dr.GetInt32(0);
+
+
+                    id = id_cliente;
+                }
+
+                dr.Close();
+            }
+
+            return id;
+
+        }
 
 
     }
