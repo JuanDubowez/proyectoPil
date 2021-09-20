@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Persona, ClienteService, Cuenta } from 'src/app/servicios/cliente.service';
 import { LocalidadI, LocalidadService, ProvinciaI } from 'src/app/servicios/localidad.service';
 
@@ -92,6 +93,21 @@ export class SignUpComponent implements OnInit {
     })
   }
 
+  onId() {
+    this.clienteService.onObtenerId(this.usuario.cuil).subscribe(
+      data=>{
+        this.cuenta.id_cliente= 1046;
+        console.log(this.cuenta.id_cliente);
+        this.cuenta.cvu = "0000"+ (1046).toString();
+        this.cuenta.numero_de_cuenta = "0000"+ (1046).toString();
+        this.cuenta.saldo = 0;
+        this.cuenta.id_tipo_cuenta = 1;
+        this.onCuenta();
+      }
+    );
+  }
+
+
   onEnviar(event: Event, usuario:Persona): void
   {
     event.preventDefault;
@@ -108,13 +124,8 @@ export class SignUpComponent implements OnInit {
     {
       this.form.markAllAsTouched(); 
     }
-    this.cuenta.id_cliente = 23;
-    this.cuenta.cvu = "0000"+ (23).toString();
-    this.cuenta.numero_de_cuenta = "0000"+ (23).toString();
-    this.cuenta.saldo = 0;
-    this.cuenta.id_tipo_cuenta = 1;
     
-    this.onCuenta();
+    this.onId();
       
 
   }

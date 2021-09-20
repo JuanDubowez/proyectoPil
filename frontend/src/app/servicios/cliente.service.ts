@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class ClienteService {
   url="https://localhost:44332/api/Cliente";
   url2="https://localhost:44332/api/Cuenta";
+  url3="https://localhost:44332/api/Cliente?cuil=";
 
   constructor(private http:HttpClient) { }
 
@@ -19,6 +20,9 @@ export class ClienteService {
     return this.http.post<Cuenta>(this.url2, cuenta);
   }
 
+  onObtenerId(cuil:string){
+    return this.http.get<any>(this.url3+cuil);
+  }
 
 }
 
