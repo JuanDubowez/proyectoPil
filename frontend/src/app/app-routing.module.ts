@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { LoginComponent } from './pages/login/login.component';
+import { MovimientosComponent } from './pages/movimientos/movimientos.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 
 const routes: Routes = [
@@ -10,6 +11,7 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'sign-up', component: SignUpComponent},
   {path: '', component: LandingPageComponent},
+  {path: 'movimientos', component: MovimientosComponent},
 
   ];
 
