@@ -5,6 +5,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { HomeComponent } from './home/home.component';
+import { MovimientosComponent } from './movimientos/movimientos.component';
 import { ProfileComponent } from './profile/profile.component';
 
 
@@ -14,7 +15,8 @@ import { ProfileComponent } from './profile/profile.component';
     SignUpComponent,
     LandingPageComponent,
     HomeComponent,
-    ProfileComponent
+    MovimientosComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule, FormsModule, ReactiveFormsModule,
