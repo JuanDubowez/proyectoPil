@@ -65,3 +65,14 @@ color: #2182C9;
 .boton {
   background-color: #2182C9;
 }
+
+a{
+  background-color: #2182C9;
+  width: 10rem;
+  height: 3rem;
+  font-size: 1.2em;
+  color: #ffff;
+  margin: 7px;
+  border: none;
+  text-align: center;
+}
