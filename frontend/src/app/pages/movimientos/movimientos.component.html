@@ -5,28 +5,31 @@
 	<link rel="stylesheet" type="text/css">
 </head>
 <body>
-    <h1>Movimientos</h1>
+    <div class="card">
+        <h1>Movimientos</h1>
 
-    <table>
-        <tr>
-          <td><strong>Fecha</strong></td>
-          <td><strong>Hora</strong></td>
-          <td><strong>Motivo</strong></td>
-          <td><strong>Monto</strong></td>
-        </tr>
-        <tr>
-            <td><li *ngFor="let fecha of fechas"> {{fecha}} </li> </td>
-            <td><li *ngFor="let horas of hora"> {{horas}} </li></td>
-            <td><li *ngFor="let motivos of motivo"> {{motivos}} </li></td>
-            <td><li *ngFor="let montos of monto">${{montos}}</li></td>
-    </table>
-
-    <fieldset>
-    <p>
-        <label>Monto:</label>
-        <input class="separadorNovimientos" type="text">
-    </p>
-    <input type ="button" value="Deposito">
-    <input type ="button"  value="Transferencia" class="seperarBotones">
-    </fieldset>
+        <table>
+            <tr>
+              <td><strong>Fecha</strong></td>
+              <td><strong>Hora</strong></td>
+              <td><strong>Motivo</strong></td>
+              <td><strong>Monto</strong></td>
+            </tr>
+            <tr>
+                <td><li *ngFor="let fecha of fechas"> {{fecha}} </li> </td>
+                <td><li *ngFor="let horas of hora"> {{horas}} </li></td>
+                <td><li *ngFor="let motivos of motivo"> {{motivos}} </li></td>
+                <td><li *ngFor="let montos of monto">${{montos}}</li></td>
+        </table>
+    
+        <fieldset>
+        <p>
+            <label>Monto:</label>
+            <input class="separadorNovimientos" type="text">
+        </p>
+        <input type ="button" value="Deposito" style="background-color: #2182C9">
+        <input type ="button"  value="Transferencia" class="seperarBotones" style="background-color: #2182C9">
+        </fieldset>
+    </div>
+    
 </body>
