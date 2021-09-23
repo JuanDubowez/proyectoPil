@@ -62,5 +62,37 @@ namespace billeteraVirtual.Models
 
             return lista;
         }
+
+        public int ObtenerPersonaCuenta(int documento, string cuil, string mail)
+        {
+            int id = 0;
+            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+
+            using (SqlConnection conn = new SqlConnection(StrConn))
+            {
+                conn.Open();
+
+                SqlCommand comm = conn.CreateCommand();
+                comm.CommandText = "comparar_usuario";
+                comm.CommandType = CommandType.StoredProcedure;
+                comm.Parameters.Add(new SqlParameter("@documento", documento));
+                comm.Parameters.Add(new SqlParameter("@cuil", cuil));
+                comm.Parameters.Add(new SqlParameter("@mail", mail));
+
+                SqlDataReader dr = comm.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    int id_cliente = dr.GetInt32(0);
+
+                    id = id_cliente;
+                }
+
+                dr.Close();
+            }
+
+            return id;
+
+        }
     }
 }
