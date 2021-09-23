@@ -90,16 +90,21 @@ export class SignUpComponent implements OnInit {
     this.clienteService.onCrearCuenta(this.cuenta).subscribe(
       data => {
         console.log(data);
+        if (data)
+          {
+            alert("El registro ha sido creado satisfactoriamente. A continuación, por favor Inicie Sesión.");
+            this.router.navigate(['/login'])
+          }
     })
   }
 
   onId() {
     this.clienteService.onObtenerId(this.usuario.cuil).subscribe(
       data=>{
-        this.cuenta.id_cliente= 1046;
+        this.cuenta.id_cliente= data;
         console.log(this.cuenta.id_cliente);
-        this.cuenta.cvu = "0000"+ (1046).toString();
-        this.cuenta.numero_de_cuenta = "0000"+ (1046).toString();
+        this.cuenta.cvu = "0000"+ (data).toString();
+        this.cuenta.numero_de_cuenta = "0000"+ (data).toString();
         this.cuenta.saldo = 0;
         this.cuenta.id_tipo_cuenta = 1;
         this.onCuenta();
@@ -115,19 +120,27 @@ export class SignUpComponent implements OnInit {
     if (this.form.valid)
     {
       console.log(usuario);
-      this.clienteService.onCrearRegistro(usuario).subscribe(
+      this.clienteService.onComparar(this.usuario.documento ,this.usuario.cuil,this.usuario.mail).subscribe(
         data => {
           console.log(data);
-      })
+          if (data>0)
+          {
+            alert("Los datos ingresados corresponden a un usuario ya registrado.");
+          }
+          else {
+            this.clienteService.onCrearRegistro(usuario).subscribe(
+              data => {
+                console.log(data);
+                this.onId();
+            })
+          }
+        }
+      )
     }
     else
     {
       this.form.markAllAsTouched(); 
-    }
-    
-    this.onId();
-      
-
+    }  
   }
 
   get nameField() {

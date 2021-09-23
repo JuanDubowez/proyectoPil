@@ -9,6 +9,7 @@ export class ClienteService {
   url="https://localhost:44332/api/Cliente";
   url2="https://localhost:44332/api/Cuenta";
   url3="https://localhost:44332/api/Cliente?cuil=";
+  url4="https://localhost:44332/api/Cuenta?documento={documento}&cuil={cuil}&mail={mail}";
 
   constructor(private http:HttpClient) { }
 
@@ -24,6 +25,10 @@ export class ClienteService {
     return this.http.get<any>(this.url3+cuil);
   }
 
+  onComparar(documento:number | undefined, cuil:string, mail:string) {
+    return this.http.get<any>("https://localhost:44332/api/Cuenta?documento="+documento+"&cuil="+cuil+"&mail="+mail);
+  }
+
 }
 
 export class Persona
@@ -31,7 +36,7 @@ export class Persona
   nombre:string="";
   apellido:string="";
   fecha_de_nacimiento=null;
-  documento=null;
+  documento:number | undefined;
   cuil:string="";
   nacionalidad:string="";
   genero:string="";
