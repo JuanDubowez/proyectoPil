@@ -11,14 +11,15 @@ export class MenuComponent implements OnInit {
   constructor(public dataService:DataService) { }
 
   ngOnInit(): void {
-   this.myClass=this.dataService.menuEnabled;
+  this.cambiar();
   }
-
+// servicio para mostrar u ocultar menu
 cambiar(){
-  this.myClass=!this.myClass;
-  // this.dataService.menuEnabled=this.myClass;
+  this.dataService.bLoggin.subscribe(
+    v=>this.myClass = v
+  );
 }
-
+// logica para abrir menu
 openNav() {
  let doc=document.getElementById("mySidebar");
  let doc1=document.getElementById("main");
@@ -28,7 +29,7 @@ openNav() {
  }
 
 }
-
+// logica para cerrar menu
  closeNav() {
   let doc=  document.getElementById("mySidebar");
   let doc1= document.getElementById("main");

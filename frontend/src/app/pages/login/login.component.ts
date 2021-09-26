@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 
 
@@ -13,7 +14,8 @@ export class LoginComponent {
   loginForm: FormGroup;
   fieldTextType:boolean=false;
 
-  constructor(private dataService:DataService) {
+  constructor(private dataService:DataService,
+              private  router:Router) {
 
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -39,7 +41,8 @@ export class LoginComponent {
   }
 
   cambiarEstado(){
-    this.dataService.bLoggin.next(true);
+    //this.dataService.bLoggin.next(true);
+    this.router.navigate(['/home']);
   }
 
   ocultarPass(){

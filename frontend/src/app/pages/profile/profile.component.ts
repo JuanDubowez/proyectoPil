@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-profile',
@@ -10,7 +11,8 @@ export class ProfileComponent implements OnInit {
   formu: FormGroup;
 
 
-  constructor(private formBuilder: FormBuilder,) {
+  constructor(private formBuilder: FormBuilder,
+              private menuSrv:DataService) {
     this.formu= this.formBuilder.group(
       {
         name:['',[Validators.required]],
@@ -26,6 +28,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.mostrar();
   }
 
   get nameField() {
@@ -58,5 +61,9 @@ export class ProfileComponent implements OnInit {
 
   get dniInvalid() {
     return this.dniField?.touched && !this.dniField.valid;
+  }
+
+  mostrar(){
+    this.menuSrv.bLoggin.next(true);
   }
 }

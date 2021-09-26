@@ -24,11 +24,6 @@ mostrar(){
   this._variableSrv.bLoggin.subscribe(
     v=>this.mostrarMenu = v
   );
-  console.log(this.mostrarMenu);
-}
-logout(){
-  this._variableSrv.bLoggin.next(true);
-  console.log( this._variableSrv.bLoggin);
 }
 
 }
