@@ -9,6 +9,7 @@ import { ClienteService } from './servicios/cliente.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LocalidadService } from './servicios/localidad.service';
 import { FormsModule } from '@angular/forms';
+import { DataService } from './services/data.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule
   ],
-  providers: [ClienteService,LocalidadService],
+  providers: [ClienteService,LocalidadService,DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

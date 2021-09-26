@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-movimientos',
@@ -13,7 +14,9 @@ export class MovimientosComponent implements OnInit {
   motivo: string[];
   hora: string[];
   @Input() montos : string;
-  constructor() { 
+
+
+  constructor(private menuSrv:DataService) {
     this.fechas =['13/09/20','19/09/20', '20/09/20']
     this.monto = ['-500','600','300']
     this.hora =['15:40', '20:14', '21:30']
@@ -22,5 +25,10 @@ export class MovimientosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.ocultarIcons();
+  }
+
+  ocultarIcons(){
+    this.menuSrv.bLoggin.next(true);
   }
 }
