@@ -3,7 +3,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <div class="container-fluid">
       <app-menu *ngIf="this.mostrarMenu" style="z-index:11111111111;"></app-menu>
-    <a href="/" class="text-white navbar-brand ms-5 d-flex justify-content-center"> PIL MONEY 2021</a>
+    <a href="/" class="text-white navbar-brand ms-5 d-flex justify-content-center"> <img src="../assets/img/icono.png" style="width: 30px;height: 30px;"> PIL MONEY 2021</a>
     <ul class="navbar-nav mb-2 mb-lg-0">
       <li *ngIf="!this.mostrarMenu" class="nav-item mt-1">
         <a class="text-white rounded-pill nav-link " routerLink="/login" routerLinkActive="active" aria-current="page"><i class="fa fa-user"></i> Login</a>
