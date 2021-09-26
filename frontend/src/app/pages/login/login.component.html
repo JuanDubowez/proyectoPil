@@ -19,8 +19,10 @@
                 <div class="form-group my-4">
                     <div >
                       <div  class="form-floating"  style="display:flex;">
-                        <input type="password" class="form-control" formControlName="password" placeholder="Ingrese su contraseña"/>
-                        <label for="floatingInput"><i class="fa fa-unlock"></i>  Contraseña</label><i class="fa fa-eye-slash" style="margin-top: 23px; color: #2182C9;"></i>
+                        <input type="password" class="form-control" [type]="fieldTextType ? 'text' : 'password'" formControlName="password" placeholder="Ingrese su contraseña"/>
+                        <label for="floatingInput"><i class="fa fa-unlock"></i>  Contraseña</label>
+                        <i *ngIf="!this.fieldTextType" class="fa fa-eye-slash" style="margin-top: 23px; color: #2182C9;cursor:pointer;" (click)="ocultarPass()"></i>
+                        <i *ngIf="this.fieldTextType" class="fa fa-eye" style="margin-top: 23px; color: #2182C9;cursor:pointer;" (click)="ocultarPass()"></i>
                       </div>
 
                         <div *ngIf="loginForm.controls.password?.errors  && loginForm.controls.password?.dirty" style="color: red; margin: 6px;"><br>

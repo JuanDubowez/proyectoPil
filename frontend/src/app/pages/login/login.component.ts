@@ -11,6 +11,7 @@ import { DataService } from 'src/app/services/data.service';
 
 export class LoginComponent {
   loginForm: FormGroup;
+  fieldTextType:boolean=false;
 
   constructor(private dataService:DataService) {
 
@@ -38,6 +39,10 @@ export class LoginComponent {
   }
 
   cambiarEstado(){
-    this.dataService.bandera$.emit(true);
+    this.dataService.bLoggin.next(true);
+  }
+
+  ocultarPass(){
+    this.fieldTextType = !this.fieldTextType;
   }
 }

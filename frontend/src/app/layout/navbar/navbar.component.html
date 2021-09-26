@@ -2,7 +2,7 @@
   <!-- Add icon library -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <div class="container-fluid">
-      <app-menu style="z-index:11111111111;"></app-menu>
+      <app-menu *ngIf="logout()" style="z-index:11111111111;"></app-menu>
     <a href="/" class="text-white navbar-brand ms-5 d-flex justify-content-center"> PIL MONEY 2021</a>
     <ul class="navbar-nav mb-2 mb-lg-0">
       <li class="nav-item mt-1">
