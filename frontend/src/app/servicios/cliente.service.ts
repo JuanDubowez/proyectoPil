@@ -10,6 +10,7 @@ export class ClienteService {
   url2="https://localhost:44332/api/Cuenta";
   url3="https://localhost:44332/api/Cliente?cuil=";
   url4="https://localhost:44332/api/Cuenta?documento={documento}&cuil={cuil}&mail={mail}";
+  url5="https://localhost:44332/api/Cliente?id_cliente=";
 
   constructor(private http:HttpClient) { }
 
@@ -29,18 +30,22 @@ export class ClienteService {
     return this.http.get<any>("https://localhost:44332/api/Cuenta?documento="+documento+"&cuil="+cuil+"&mail="+mail);
   }
 
+  onActualizarUsuario(id_cliente:number, usuario:Persona):Observable<any>{
+    return this.http.put<Persona>(this.url5+id_cliente, usuario);
+  }
+
 }
 
 export class Persona
 {
   nombre:string="";
   apellido:string="";
-  fecha_de_nacimiento=null;
+  fecha_de_nacimiento:any=null;
   documento:number | undefined;
   cuil:string="";
   nacionalidad:string="";
   genero:string="";
-  id_localidad=null;
+  id_localidad:any=null;
   mail:string="";
   contrasena:string="";
   imagen_delantera:string="Si";

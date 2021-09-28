@@ -120,7 +120,15 @@
             </div>
 
             <div class>
-                <input type="password" class="form-control casilla2" placeholder="Contraseña" formControlName="contrasena" [(ngModel)]="usuario.contrasena"/>
+                <div class="input-group mb-3">
+                    <input type="password" class="form-control casilla2" [type]="fieldTextType ? 'text' : 'password'" placeholder="Contraseña" formControlName="contrasena" [(ngModel)]="usuario.contrasena"/>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" style="color: #ffffff;" id="basic-addon1" >
+                          <i *ngIf="!this.fieldTextType" class="fa fa-eye-slash" style="margin-top: 15px; color: #020c13;cursor:pointer;" (click)="ocultarPass()"></i>
+                          <i *ngIf="this.fieldTextType" class="fa fa-eye" style="margin-top: 15px; color: #020d14;cursor:pointer;" (click)="ocultarPass()"></i>
+                        </span>
+                    </div>
+                </div>
                 <small id="passwordlHelp" class="form-text text-muted">Debe tener entre 8 y 15 caracteres.</small>
                 <div *ngIf="passField?.errors  && passField?.dirty" class="text-danger">
                     <p *ngIf="passField?.hasError('required')" >
@@ -148,6 +156,3 @@
         </form>
     </div>
 </div>
-
-
-
