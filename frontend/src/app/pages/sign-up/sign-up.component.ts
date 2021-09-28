@@ -12,6 +12,7 @@ import { LocalidadI, LocalidadService, ProvinciaI } from 'src/app/servicios/loca
 })
 export class SignUpComponent implements OnInit {
 
+  fieldTextType:boolean=false;
   form: FormGroup;
   usuario: Persona = new Persona();
   cuenta: Cuenta = new Cuenta();
@@ -92,6 +93,7 @@ export class SignUpComponent implements OnInit {
         console.log(data);
         if (data)
           {
+            
             alert("El registro ha sido creado satisfactoriamente. A continuación, por favor Inicie Sesión.");
             this.router.navigate(['/login'])
           }
@@ -122,7 +124,6 @@ export class SignUpComponent implements OnInit {
       console.log(usuario);
       this.clienteService.onComparar(this.usuario.documento ,this.usuario.cuil,this.usuario.mail).subscribe(
         data => {
-          console.log(data);
           if (data>0)
           {
             alert("Los datos ingresados corresponden a un usuario ya registrado.");
@@ -236,6 +237,10 @@ export class SignUpComponent implements OnInit {
 
   get passInvalid() {
     return this.passField?.touched && !this.passField.valid;
+  }
+
+  ocultarPass(){
+    this.fieldTextType = !this.fieldTextType;
   }
 
 }

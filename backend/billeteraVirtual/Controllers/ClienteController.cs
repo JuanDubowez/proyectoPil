@@ -37,8 +37,11 @@ namespace billeteraVirtual.Controllers
         }
 
         // PUT: api/Cliente/5
-        public void Put(int id, [FromBody]string value)
+        public Clientes Put(int id_cliente, [FromBody] Clientes value)
         {
+            GestorClientes gPersona = new GestorClientes();
+            gPersona.ActualizarPersona(id_cliente, value);
+            return value;
         }
 
         // DELETE: api/Cliente/5

@@ -1,47 +1,41 @@
-<div class="container-fluid d-flex justify-content-center align-items-center h-100">
+<div class="container-fluid d-flex justify-content-center align-items-center">
   <div class="box card p-3 py-4">
-      <h4 class="titulo">Actualizar Datos Perfil</h4>
-      <form [formGroup]="formu"  novalidate>
-          <div>
-              <input type="text" class="form-control casilla2" placeholder="Nombre" formControlName="name" />
-              <div *ngIf="nameField?.errors  && nameField?.dirty" class="text-danger">
-                  <p *ngIf="nameField?.hasError('required')" >
-                    El nombre es requerido.
-                  </p>
-              </div>
+      <h4 class="titulo">Datos Pesonales</h4>
+      <small id="filelHelp" class="form-text text-muted">Si por alguna razón necesita solicitar el cambio de datos personales recuerde que será necesario adjuntar imagenes de su DNI para corroborar los datos.</small><br>
+      <form [formGroup]="formu"  class="row g-3" (ngSubmit)="onEnviar($event,usuario)" novalidate>
+          <div class="col-md-3">
+              <input type="text" class="form-control casilla2" placeholder="Nombre" formControlName="name" [(ngModel)]="usuario.nombre" />
           </div>
 
-          <div>
-              <input type="text" class="form-control casilla2" placeholder="Apellido" formControlName="lastName" />
-              <div *ngIf="lastNameField?.errors  && lastNameField?.dirty" class="text-danger">
-                  <p *ngIf="lastNameField?.hasError('required')" >
-                    El apellido es requerido.
-                  </p>
-              </div>
+          <div class="col-md-3">
+              <input type="text" class="form-control casilla2" placeholder="Apellido" formControlName="lastName" [(ngModel)]="usuario.apellido" />
           </div>
 
-          <div class>
-              <input type="date" class="form-control casilla2 text-white" placeholder="Fecha de Nacimiento" formControlName="nacimiento" />
-              <div *ngIf="nacimientoField?.errors  && nacimientoField?.dirty" class="text-danger">
-                  <p *ngIf="nacimientoField?.hasError('required')" >
-                    La fecha de nacimiento es requerida.
-                  </p>
-              </div>
+          <div class="col-md-3">
+              <input type="date" class="form-control casilla2 text-white" placeholder="Fecha de Nacimiento" formControlName="nacimiento" [(ngModel)]="usuario.fecha_de_nacimiento"/>
           </div>
 
-          <div>
-              <input type="number" class="form-control casilla2" placeholder="DNI" formControlName="dni" />
-              <small id="dnilHelp" class="form-text text-muted">  Ingresa tu número de DNI sin incluir los puntos.</small>
-              <div *ngIf="dniField?.errors  && dniField?.dirty" class="text-danger">
-                  <p *ngIf="dniField?.hasError('required')" >
-                    El DNI es requerido.
-                  </p>
-              </div>
+          <div class="form-group col-md-3">
+            <select class="custom-select form-select casilla2 text-white">
+                <option selected>{{usuario.genero}}</option>
+                <option value="Femenino">Femenino</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Otro">Otro</option>
+            </select>
+        </div>
+
+          <div class="col-md-6" >
+              <input type="number" class="form-control casilla2" placeholder="DNI" formControlName="dni" [(ngModel)]="usuario.documento" />
+              <small id="dnilHelp" class="form-text text-muted">  Sin incluir los puntos.</small>
           </div>
 
-          <div class="form-group">
+          <div class="col-md-6">
+            <input type="text" class="form-control casilla2" placeholder="Cuil" formControlName="cuil" [(ngModel)]="usuario.cuil"/>
+          </div>
+
+          <div class="form-group col-md-4" >
               <select class="custom-select form-select casilla2 text-white">
-                  <option selected>Nacionalidad</option>
+                  <option selected>{{usuario.nacionalidad}}</option>
                   <option value="Argentina">Argentina</option>
                   <option value="Boliviana">Boliviana</option>
                   <option value="Brasilera">Brasilera</option>
@@ -51,13 +45,20 @@
               </select>
           </div>
 
-          <div class="form-group">
-              <select class="custom-select form-select casilla2 text-white">
-                  <option selected>Genero</option>
-                  <option value="Femenino">Femenino</option>
-                  <option value="Masculino">Masculino</option>
-                  <option value="Otro">Otro</option>
-              </select>
+          <div class="form-group col-md-4">
+            <select class="custom-select form-select casilla2 text-white" (change)="onSelect($any($event.target).value)">
+                <option *ngFor="let prov of provincias" value={{prov.Id_provincia}}>
+                    {{prov.Provinciaa}}
+                </option>
+            </select>
+         </div>
+
+         <div class="form-group col-md-4" *ngIf="mostrar_localidades">
+            <select class="custom-select form-select casilla2 text-white" (change)="onSelectLocalidad($any($event.target).value)">
+                <option *ngFor="let loc of localidades" value={{loc.Id_localidad}}>
+                    {{loc.Nombre}}
+                </option>
+            </select>
           </div>
 
           <br>
@@ -66,9 +67,36 @@
               <input type="file" class="custom-file-input" id="customFile">
             </div>
           <br>
-          <a class="btn btn-primary w-100 btn-lg" href="/home" role="button">
-           Actualizar Perfil
-          </a>
-      </form>
+          <button class="w-100 btn-lg boton text-white" type="submit">
+            Actualizar Perfil
+          </button>
+      </form>        
   </div>
+</div>
+<div class="container-fluid d-flex justify-content-center align-items-center">
+    <div class="box card p-3 py-4">
+        <h4 class="titulo">Datos de la Cuenta</h4>
+        <form [formGroup]="formu2"  (ngSubmit)="onEnviar2($event,usuario)" novalidate>
+            <div class>
+                <input type="email" class="form-control casilla2" placeholder="Mail" formControlName="mail" [(ngModel)]="usuario.mail"/>
+            </div>
+    
+            <div class>
+                <div class="input-group mb-3">
+                    <input type="password" class="form-control casilla2" [type]="fieldTextType ? 'text' : 'password'" placeholder="Contraseña" formControlName="contrasena" [(ngModel)]="usuario.contrasena"/>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" style="color: #ffffff;" id="basic-addon1" >
+                          <i *ngIf="!this.fieldTextType" class="fa fa-eye-slash" style="margin-top: 15px; color: #020c13;cursor:pointer;" (click)="ocultarPass()"></i>
+                          <i *ngIf="this.fieldTextType" class="fa fa-eye" style="margin-top: 15px; color: #020d14;cursor:pointer;" (click)="ocultarPass()"></i>
+                        </span>
+                    </div>
+                </div>
+                <small id="passwordlHelp" class="form-text text-muted">Debe tener entre 8 y 15 caracteres.</small>    
+            </div>
+            <button class="w-100 btn-lg boton text-white" type="submit">
+                Actualizar Usuario
+            </button>
+        </form>
+      </div>
+    
 </div>

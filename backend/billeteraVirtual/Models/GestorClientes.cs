@@ -182,6 +182,36 @@ namespace billeteraVirtual.Models
 
         }
 
+        public void ActualizarPersona(int id_cliente, Clientes persona)
+        {
+            string connection = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+
+            using (SqlConnection conn = new SqlConnection(connection))
+            {
+                conn.Open();
+
+                SqlCommand comm = conn.CreateCommand();
+                comm.CommandText = "actualizar_persona";
+                comm.CommandType = CommandType.StoredProcedure;
+                comm.Parameters.Add(new SqlParameter("@id_cliente", id_cliente));
+                comm.Parameters.Add(new SqlParameter("@nombre", persona.Nombre));
+                comm.Parameters.Add(new SqlParameter("@apellido", persona.Apellido));
+                comm.Parameters.Add(new SqlParameter("@fecha_de_nacimiento", persona.Fecha_de_nacimiento));
+                comm.Parameters.Add(new SqlParameter("@documento", persona.Documento));
+                comm.Parameters.Add(new SqlParameter("@cuil", persona.Cuil));
+                comm.Parameters.Add(new SqlParameter("@nacionalidad", persona.Nacionalidad));
+                comm.Parameters.Add(new SqlParameter("@genero", persona.Genero));
+                comm.Parameters.Add(new SqlParameter("@id_localidad", persona.Id_localidad));
+                comm.Parameters.Add(new SqlParameter("@mail", persona.Mail));
+                comm.Parameters.Add(new SqlParameter("@contrasena", persona.Contrasena));
+                comm.Parameters.Add(new SqlParameter("@imagen_delantera", persona.Imagen_delantera));
+                comm.Parameters.Add(new SqlParameter("imagen_trasera", persona.Imagen_trasera));
+                comm.ExecuteNonQuery();
+            }
+        }
+
+
+
 
     }
 }
