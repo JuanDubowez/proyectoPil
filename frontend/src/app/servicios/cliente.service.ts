@@ -11,6 +11,7 @@ export class ClienteService {
   url3="https://localhost:44332/api/Cliente?cuil=";
   url4="https://localhost:44332/api/Cuenta?documento={documento}&cuil={cuil}&mail={mail}";
   url5="https://localhost:44332/api/Cliente?id_cliente=";
+  url6="https://localhost:44332/api/Cliente2/";
 
   constructor(private http:HttpClient) { }
 
@@ -32,6 +33,10 @@ export class ClienteService {
 
   onActualizarUsuario(id_cliente:number, usuario:Persona):Observable<any>{
     return this.http.put<Persona>(this.url5+id_cliente, usuario);
+  }
+
+  onObtenerCliente(id:number){
+    return this.http.get<any>(this.url6+id);
   }
 
 }

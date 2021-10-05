@@ -22,9 +22,14 @@ export class ProfileComponent implements OnInit {
   localidades4!: LocalidadI[];
   public selectedProvincia: ProvinciaI = { Id_provincia: 0, Provinciaa: ''};
   public selectedLocalidad: LocalidadI = { Id_localidad: 0, Nombre: '', Cosdigo_postal: 0, Id_provincia: 0};
-  mostrar_localidades=false;
   id_cliente:number=0;
-
+  localidadSel:any;
+  localidadSelected:any;
+  provinciaSel:any;
+  provinciaSelected:any;
+  mostrarLoc:Boolean=true;
+  exitoDatos:Boolean=false;
+  exitoCuenta:Boolean=false;
 
   constructor(private formBuilder: FormBuilder,
               private menuSrv:DataService, 
@@ -33,40 +38,24 @@ export class ProfileComponent implements OnInit {
               private localidadService: LocalidadService) {
     this.formu= this.formBuilder.group(
       {
-        name:['Ana'],
-        lastName: ['Lopez'],
-        nacimiento:['1998-04-10'],
-        dni:['36000333'],
-        cuil:['23-36000333-8', [ Validators.minLength(10), Validators.maxLength(15)]],
+        name:[''],
+        lastName: [''],
+        nacimiento:[''],
+        dni:[''],
+        cuil:['', [ Validators.minLength(10), Validators.maxLength(15)]],
       }
     )
 
     this.formu2= this.formBuilder.group(
       {
-        mail:['analopez@gmail.com'],
-        contrasena:['12345678'],
+        mail:[''],
+        contrasena:[''],
       }
     )
   }
 
   ngOnInit(): void {
     this.mostrar();
-    
-    this.localidadService.ObtenerProvincias().subscribe(
-      data=> {
-        console.log(data);
-        this.provincias=data;
-        console.log(this.provincias);
-      }
-    );
-
-    this.localidadService.ObtenerLocalidades().subscribe(
-      data=> {
-        console.log(data);
-        this.localidades=data;
-        console.log(this.localidades);
-      }
-    );
 
     this.cargarUsuario();
   }
@@ -87,9 +76,9 @@ export class ProfileComponent implements OnInit {
     console.log(id_provincia);
     this.localidadService.ObtenerLocalidades().subscribe(
       data=> {
+        this.mostrarLoc = false;
         this.localidades4=data;
         this.localidades = this.localidades4.filter(item => item.Id_provincia == id_provincia);
-        this.mostrar_localidades = true;
         console.log(this.localidades);
       }
     );
@@ -113,8 +102,7 @@ export class ProfileComponent implements OnInit {
         data => {
           console.log(data);
           if(data){
-            alert("Los datos se han actualizado correctamente.");
-            this.router.navigate(['/home'])
+            this.exitoDatos = true;
           }
           
       })
@@ -136,8 +124,7 @@ export class ProfileComponent implements OnInit {
         data => {
           console.log(data);
           if(data){
-            alert("Los datos se han actualizado correctamente.");
-            this.router.navigate(['/home'])
+            this.exitoCuenta = true;
           }
           
       })
@@ -156,7 +143,7 @@ export class ProfileComponent implements OnInit {
     this.menuSrv.bLoggin.next(true);
   }
 
-  cargarUsuario(){
+  cargarUsuario2(){
     this.id_cliente = 4;
     this.usuario.nombre="Ana";
     this.usuario.apellido="Lopez";
@@ -170,5 +157,50 @@ export class ProfileComponent implements OnInit {
     this.usuario.contrasena="12345678";
     this.usuario.imagen_delantera="Si";
     this.usuario.imagen_trasera="Si";
+  }
+
+  cargarUsuario(){
+    this.clienteService.onObtenerCliente(4).subscribe(
+      data=>{
+        console.log(data);
+        this.id_cliente = data['Id_cliente'];
+        this.usuario.nombre=data['Nombre'];
+        this.usuario.apellido=data['Apellido'];
+        this.usuario.fecha_de_nacimiento=new Date(data['Fecha_de_nacimiento']).toISOString().split('T')[0];
+        this.usuario.documento=data['Documento'];
+        this.usuario.cuil=data['Cuil'];
+        this.usuario.nacionalidad=data['Nacionalidad'];
+        this.usuario.genero=data['Genero'];
+        this.usuario.id_localidad=data['Id_localidad'];
+        this.usuario.mail=data['Mail'];
+        this.usuario.imagen_delantera=data['Imagen_delantera'];
+        this.usuario.imagen_trasera=data['Imagen_trasera'];
+    
+        this.localidadService.ObtenerLocalidades().subscribe(
+          data=> {
+            console.log(data);
+            this.localidades=data;
+            console.log(this.localidades);
+            this.localidadSel=this.localidades.filter(item => item.Id_localidad == this.usuario.id_localidad);
+            this.localidadSelected = this.localidadSel[0]['Nombre'];
+            console.log(this.localidadSel);
+
+            this.localidadService.ObtenerProvincias().subscribe(
+              data=> {
+                console.log(data);
+                this.provincias=data;
+                console.log(this.provincias);
+                this.provinciaSel=this.provincias.filter(item => item.Id_provincia == this.localidadSel[0]['Id_provincia']);
+                this.provinciaSelected = this.provinciaSel[0]['Provinciaa'];
+                console.log(this.provinciaSel);
+                console.log(this.provinciaSelected);
+              }
+            );
+          }
+        );
+
+        
+      }
+    );
   }
 }
