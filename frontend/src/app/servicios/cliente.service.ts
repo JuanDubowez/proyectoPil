@@ -60,3 +60,10 @@ export class Cuenta
   saldo:number=0;
   id_tipo_cuenta=1;
 }
+
+export class LoginRequest{
+  mail:string="";
+  contrasena:string="";
+  //token?:string;
+  token:string="";
+}

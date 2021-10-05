@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
+import { AuthService } from 'src/app/servicios/Auth/auth.service';
+import { LoginRequest } from 'src/app/servicios/cliente.service';
+import {FormsModule} from '@angular/forms';
+
 
 
 @Component({
@@ -13,11 +17,15 @@ import { DataService } from 'src/app/services/data.service';
 export class LoginComponent {
   loginForm: FormGroup;
   fieldTextType:boolean=false;
+  usuario:LoginRequest=new LoginRequest;
+  error?:string;
 
   constructor(private dataService:DataService,
-              private  router:Router) {
+              private  router:Router,
+              private formBuilder: FormBuilder,
+              private authService:AuthService) {
 
-    this.loginForm = new FormGroup({
+    this.loginForm = this.formBuilder.group({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required,Validators.minLength(8), Validators.maxLength(15)]),
     });
@@ -42,10 +50,36 @@ export class LoginComponent {
 
   cambiarEstado(){
     //this.dataService.bLoggin.next(true);
-    this.router.navigate(['/home']);
+   // this.router.navigate(['/home']);
   }
 
   ocultarPass(){
     this.fieldTextType = !this.fieldTextType;
+  }
+
+  onEnviar(event: Event, usuario: LoginRequest)
+  {
+    event.preventDefault(); //Cancela la funcionalidad por default.
+    if (this.loginForm.valid)
+    {
+      console.log(this.loginForm.value); //se puede enviar al servidor...
+      this.authService.login(this.usuario)
+      .subscribe(
+        data => {
+        console.log("DATA"+ JSON.stringify( data));
+        localStorage.setItem('auth-token', JSON.stringify(data ));
+
+        this.router.navigate(['/home']);
+
+        },
+        error => {
+         this.error = error;
+        }
+      );
+    }
+    else
+    {
+      this.loginForm.markAllAsTouched(); //Activa todas las validaciones
+    }
   }
 }
