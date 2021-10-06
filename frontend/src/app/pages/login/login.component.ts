@@ -54,7 +54,6 @@ export class LoginComponent {
 
   cambiarEstado(){
     //this.dataService.bLoggin.next(true);
-   // this.router.navigate(['/home']);
   }
 
   ocultarPass(){
