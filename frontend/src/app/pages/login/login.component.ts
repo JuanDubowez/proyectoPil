@@ -31,6 +31,10 @@ export class LoginComponent {
     });
   }
 
+
+  ngOnInit(): void {
+  }
+
   onSubmit() {
     if (this.loginForm.valid) {
       console.log(this._v());
@@ -67,7 +71,7 @@ export class LoginComponent {
       .subscribe(
         data => {
         console.log("DATA"+ JSON.stringify( data));
-        localStorage.setItem('auth-token', JSON.stringify(data ));
+        //localStorage.setItem('auth-token', JSON.stringify(data ));
 
         this.router.navigate(['/home']);
 
