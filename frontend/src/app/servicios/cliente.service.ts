@@ -62,8 +62,7 @@ export class Cuenta
 }
 
 export class LoginRequest{
-  mail:string="";
-  contrasena:string="";
-  //token?:string;
-  token:string="";
+  UserName:string="";
+  Password:string="";
+  Token: string='';
 }

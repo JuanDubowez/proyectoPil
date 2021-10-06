@@ -6,10 +6,11 @@ import { LoginComponent } from './pages/login/login.component';
 import { MovimientosComponent } from './pages/movimientos/movimientos.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
+import { AuthGuard } from './servicios/Auth/auth.guard';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
-  {path: 'home', component: HomeComponent},
+  {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'sign-up', component: SignUpComponent},
   {path: 'profile', component: ProfileComponent},
   {path: '', component: LandingPageComponent},

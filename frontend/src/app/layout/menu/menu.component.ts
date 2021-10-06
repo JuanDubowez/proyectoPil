@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
+import { AuthService } from 'src/app/servicios/Auth/auth.service';
 
 @Component({
   selector: 'app-menu',
@@ -8,10 +10,14 @@ import { DataService } from 'src/app/services/data.service';
 })
 export class MenuComponent implements OnInit {
   myClass :boolean=false;
-  constructor(public dataService:DataService) { }
+  estaAutenticado:boolean=false;
+  constructor(public dataService:DataService,
+              private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit(): void {
   this.cambiar();
+  this.authService.estaAutenticado.subscribe(res=>( this.estaAutenticado=res));
   }
 // servicio para mostrar u ocultar menu
 cambiar(){
@@ -39,5 +45,11 @@ openNav() {
   }
  }
 
+
+ onCerrarSesion(){
+  this.authService.logOut();
+  this.estaAutenticado=false;
+  this.router.navigate(['/landing-page']);
+}
 
 }

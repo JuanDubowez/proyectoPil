@@ -1,19 +1,21 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
+
 import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
 import { LoginRequest } from '../cliente.service';
+
 const TOKEN_KEY = 'auth-token';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
-  url="https://localhost:44303/api/login/authenticate";
+  url="https://localhost:44332/api/login/authenticate";
   currentUserSubject: BehaviorSubject<LoginRequest>;
   currentUser: Observable<LoginRequest>;
   loggedIn= new BehaviorSubject<boolean>(false);
-
 
   constructor(private http:HttpClient) {
     console.log("AUTH SERVICE WORKING");
@@ -24,8 +26,9 @@ export class AuthService {
   }
 
   login(usuario: LoginRequest): Observable<any> {
+    debugger
     return this.http.post<LoginRequest>(this.url, usuario).pipe(map(data => {
-      localStorage.setItem(TOKEN_KEY, data.token);
+      localStorage.setItem(TOKEN_KEY, data.Token);
 
       this.currentUserSubject.next(data);
       this.loggedIn.next(true);

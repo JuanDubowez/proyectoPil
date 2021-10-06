@@ -210,8 +210,32 @@ namespace billeteraVirtual.Models
             }
         }
 
+        public bool ValidarLogin(string mail, string contrasena)
+        {
+            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+
+            using (SqlConnection conn = new SqlConnection(StrConn))
+            {
+                conn.Open();
 
 
+                SqlCommand comm = conn.CreateCommand();
+                comm.CommandText = "obtener_datos_logeo";
+                comm.CommandType = CommandType.StoredProcedure;
+                comm.Parameters.Add(new SqlParameter("@mail", mail));
+                comm.Parameters.Add(new SqlParameter("@contrasena", contrasena));
 
+                SqlDataReader dr = comm.ExecuteReader();
+                if (dr.Read())
+                {
+                    string email = dr.GetString(0).Trim();
+                    string contrasenna = dr.GetString(10).Trim();
+                }
+                dr.Close();
+            }
+            return true;
+            
+        }
+            
     }
 }

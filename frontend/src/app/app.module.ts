@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { DataService } from './services/data.service';
 import { JwtInterceptor } from './servicios/interceptor.service';
 import { ErrorInterceptor } from './servicios/error.service';
+import { CuentaService } from './services/cuenta.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { ErrorInterceptor } from './servicios/error.service';
     HttpClientModule,
     FormsModule
   ],
-  providers: [ClienteService,LocalidadService,DataService,
+  providers: [ClienteService,LocalidadService,DataService,CuentaService,ClienteService,
    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
   bootstrap: [AppComponent]
