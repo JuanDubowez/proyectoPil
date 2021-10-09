@@ -5,10 +5,10 @@
             <h2 class="bienvenida">
                 Te damos la bienvenida <br />a <strong>PIL MONEY - 2021</strong>
             </h2>
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" autocomplete="off" novalidate>
+            <form [formGroup]="loginForm" (ngSubmit)="onEnviar($event,usuario)" autocomplete="off" novalidate>
                 <div class="form-group my-4">
                     <div class="form-floating">
-                        <input type="email" class="form-control" formControlName="email" id="floatingInput" placeholder="Ingrese su email"/>
+                        <input type="email" class="form-control" formControlName="email" id="floatingInput" placeholder="Ingrese su email" [(ngModel)]="usuario.UserName"/>
                         <label for="floatingInput"><i class="fa fa-envelope"></i>  Correo Electronico</label>
                         <div *ngIf="loginForm.controls.email.touched && loginForm.controls.email.errors?.email" style="color: red; margin: 6px;">
                             Por favor, ingrese bien su correo electronico
@@ -19,7 +19,7 @@
                 <div class="form-group my-4">
                     <div >
                       <div  class="form-floating"  style="display:flex;">
-                        <input type="password" class="form-control" [type]="fieldTextType ? 'text' : 'password'" formControlName="password" placeholder="Ingrese su contraseña"/>
+                        <input type="password" class="form-control" [type]="fieldTextType ? 'text' : 'password'" formControlName="password" placeholder="Ingrese su contraseña" [(ngModel)]="usuario.Password" />
                         <label for="floatingInput"><i class="fa fa-unlock"></i>  Contraseña</label>
                         <i *ngIf="!this.fieldTextType" class="fa fa-eye-slash" style="margin-top: 23px; color: #2182C9;cursor:pointer;" (click)="ocultarPass()"></i>
                         <i *ngIf="this.fieldTextType" class="fa fa-eye" style="margin-top: 23px; color: #2182C9;cursor:pointer;" (click)="ocultarPass()"></i>
@@ -40,14 +40,9 @@
                 </div>
 
                 <div class="d-flex justify-content-center" style="text-align: center; margin: 15px;">
-                    <!-- <button type="submit" class="btn ingresar text-center" routerLink="/home">
-                        Ingresar
-                    </button> -->
-                    <a class="btn btn-primary" (click)="cambiarEstado()" role="button">Ingresar</a>
-                    <!-- <button type="submit" class="btn ingresar text-center" routerLink="/sig-in">
-                        Registrarse
-                    </button> -->
-                    <a class="btn btn-primary" href="/sign-up" role="button">Registrarse</a>
+                    <button class="btn btn-primary"  type="submit" (click)="cambiarEstado()" role="button">Ingresar</button>
+
+                    <a class="btn btn-primary" routerLink="/sign-up" routerLinkActive="active" aria-current="page" role="button">Registrarse</a>
                 </div>
             </form>
 

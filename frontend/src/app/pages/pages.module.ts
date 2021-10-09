@@ -7,7 +7,8 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { HomeComponent } from './home/home.component';
 import { MovimientosComponent } from './movimientos/movimientos.component';
 import { ProfileComponent } from './profile/profile.component';
-
+import { MibilleteraComponent } from './mibilletera/mibilletera.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -17,10 +18,12 @@ import { ProfileComponent } from './profile/profile.component';
     HomeComponent,
     MovimientosComponent,
     ProfileComponent,
+    MibilleteraComponent,
   ],
   imports: [
-    CommonModule, FormsModule, ReactiveFormsModule,
-  ]
+    CommonModule, FormsModule, ReactiveFormsModule, RouterModule
+  ],
+  exports: [HomeComponent,LoginComponent, SignUpComponent, LandingPageComponent, MovimientosComponent, ProfileComponent, MibilleteraComponent]
 })
 export class PagesModule { }
 

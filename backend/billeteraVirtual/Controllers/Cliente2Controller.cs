@@ -9,6 +9,7 @@ using billeteraVirtual.Models;
 
 namespace billeteraVirtual.Controllers
 {
+    [Authorize]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class Cliente2Controller : ApiController
     {

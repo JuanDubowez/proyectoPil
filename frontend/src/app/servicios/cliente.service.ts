@@ -65,3 +65,10 @@ export class Cuenta
   saldo:number=0;
   id_tipo_cuenta=1;
 }
+
+export class LoginRequest{
+  UserName:string="";
+  Password:string="";
+  Token: string='';
+  Id_cliente: number=0;
+}

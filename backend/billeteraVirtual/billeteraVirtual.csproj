@@ -178,7 +178,10 @@
     <Compile Include="Controllers\CuentaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocalidadController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProvinciaController.cs" />
+    <Compile Include="Controllers\TokenGenerator.cs" />
+    <Compile Include="Controllers\TokenValidationHandler.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -194,6 +197,7 @@
     <Compile Include="Models\GestorTipoCuenta.cs" />
     <Compile Include="Models\GestorTipoOperacion.cs" />
     <Compile Include="Models\Localidad.cs" />
+    <Compile Include="Models\LoginRequest.cs" />
     <Compile Include="Models\Operacion.cs" />
     <Compile Include="Models\Provincia.cs" />
     <Compile Include="Models\Telefono.cs" />
@@ -283,7 +287,9 @@
     <Content Include="Content\bootstrap-theme.css.map" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>

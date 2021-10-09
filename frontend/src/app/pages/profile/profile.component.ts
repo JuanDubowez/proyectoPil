@@ -5,6 +5,8 @@ import { ClienteService, Cuenta, Persona } from 'src/app/servicios/cliente.servi
 import { LocalidadI, LocalidadService, ProvinciaI } from 'src/app/servicios/localidad.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AuthService } from '../../servicios/Auth/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -30,12 +32,16 @@ export class ProfileComponent implements OnInit {
   mostrarLoc:Boolean=true;
   exitoDatos:Boolean=false;
   exitoCuenta:Boolean=false;
+  id_log:any;
+  fakecontra:any;
 
   constructor(private formBuilder: FormBuilder,
               private menuSrv:DataService, 
               private clienteService: ClienteService, 
               private router: Router, 
-              private localidadService: LocalidadService) {
+              private localidadService: LocalidadService,
+              private authService:AuthService
+              ) {
     this.formu= this.formBuilder.group(
       {
         name:[''],
@@ -97,8 +103,10 @@ export class ProfileComponent implements OnInit {
 
     if (this.formu.valid)
     {
-      console.log(usuario);
-      this.clienteService.onActualizarUsuario(this.id_cliente,usuario).subscribe(
+      if(this.usuario.contrasena == ""){
+        this.usuario.contrasena = this.fakecontra;
+        console.log(usuario);
+        this.clienteService.onActualizarUsuario(this.id_cliente,usuario).subscribe(
         data => {
           console.log(data);
           if(data){
@@ -106,6 +114,18 @@ export class ProfileComponent implements OnInit {
           }
           
       })
+      }
+      else {
+        console.log(usuario);
+        this.clienteService.onActualizarUsuario(this.id_cliente,usuario).subscribe(
+        data => {
+          console.log(data);
+          if(data){
+            this.exitoDatos = true;
+          }
+          
+      })
+      }
     }
     else
     {
@@ -143,24 +163,9 @@ export class ProfileComponent implements OnInit {
     this.menuSrv.bLoggin.next(true);
   }
 
-  cargarUsuario2(){
-    this.id_cliente = 4;
-    this.usuario.nombre="Ana";
-    this.usuario.apellido="Lopez";
-    this.usuario.fecha_de_nacimiento="1998-04-10";
-    this.usuario.documento=36000333;
-    this.usuario.cuil="23-36000333-8";
-    this.usuario.nacionalidad="Chilena";
-    this.usuario.genero="Femenino";
-    this.usuario.id_localidad=1;
-    this.usuario.mail="analopez@gmail.com";
-    this.usuario.contrasena="12345678";
-    this.usuario.imagen_delantera="Si";
-    this.usuario.imagen_trasera="Si";
-  }
-
   cargarUsuario(){
-    this.clienteService.onObtenerCliente(4).subscribe(
+    this.id_log = localStorage.getItem('auth-id');
+    this.clienteService.onObtenerCliente(this.id_log).subscribe(
       data=>{
         console.log(data);
         this.id_cliente = data['Id_cliente'];
@@ -173,6 +178,7 @@ export class ProfileComponent implements OnInit {
         this.usuario.genero=data['Genero'];
         this.usuario.id_localidad=data['Id_localidad'];
         this.usuario.mail=data['Mail'];
+        this.fakecontra =data['Contrasena']
         this.usuario.imagen_delantera=data['Imagen_delantera'];
         this.usuario.imagen_trasera=data['Imagen_trasera'];
     
