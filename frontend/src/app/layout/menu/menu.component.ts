@@ -49,7 +49,7 @@ openNav() {
  onCerrarSesion(){
   this.authService.logOut();
   this.estaAutenticado=false;
-  this.router.navigate(['/landing-page']);
+  this.router.navigate(['']);
 }
 
 }

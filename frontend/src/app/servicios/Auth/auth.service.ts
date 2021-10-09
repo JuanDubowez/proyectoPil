@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 import { LoginRequest } from '../cliente.service';
-
 const TOKEN_KEY = 'auth-token';
+const TOKEN_KEY2 = 'auth-id';
 
 @Injectable({
   providedIn: 'root'
@@ -26,9 +25,9 @@ export class AuthService {
   }
 
   login(usuario: LoginRequest): Observable<any> {
-    debugger
     return this.http.post<LoginRequest>(this.url, usuario).pipe(map(data => {
       localStorage.setItem(TOKEN_KEY, data.Token);
+      localStorage.setItem(TOKEN_KEY2, data.Id_cliente.toString());
 
       this.currentUserSubject.next(data);
       this.loggedIn.next(true);
@@ -47,6 +46,7 @@ export class AuthService {
    logOut(): void {
     window.sessionStorage.clear();
     localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem(TOKEN_KEY2);
     this.loggedIn.next(false);
   }
 }

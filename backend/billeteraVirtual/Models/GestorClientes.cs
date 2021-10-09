@@ -210,8 +210,9 @@ namespace billeteraVirtual.Models
             }
         }
 
-        public bool ValidarLogin(string mail, string contrasena)
+        public int ValidarLogin(string mail, string contrasena)
         {
+            int id = 0;
             string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
 
             using (SqlConnection conn = new SqlConnection(StrConn))
@@ -228,14 +229,14 @@ namespace billeteraVirtual.Models
                 SqlDataReader dr = comm.ExecuteReader();
                 if (dr.Read())
                 {
-                    string email = dr.GetString(0).Trim();
-                    string contrasenna = dr.GetString(10).Trim();
+                    id = dr.GetInt32(0);
+                    string nombre = dr.GetString(1).Trim();
                 }
                 dr.Close();
             }
-            return true;
+            return id;
             
         }
-            
+
     }
 }

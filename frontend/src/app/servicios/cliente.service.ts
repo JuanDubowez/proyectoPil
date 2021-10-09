@@ -70,4 +70,5 @@ export class LoginRequest{
   UserName:string="";
   Password:string="";
   Token: string='';
+  Id_cliente: number=0;
 }

@@ -39,12 +39,17 @@ namespace billeteraVirtual.Controllers
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
             //TODO: This code is only for demo - extract method in new class & validate correctly in your application !!
-            var isUserValid = (login.UserName == "fede@gmail.com" && login.Password == "12345678");
-            if (isUserValid)
+
+            GestorClientes gestorPersona = new GestorClientes();
+            var isUserValid = gestorPersona.ValidarLogin(login.UserName, login.Password);
+
+            if (isUserValid > 0)
             {
                 var rolename = "User";
                 var token = TokenGenerator.GenerateTokenJwt(login.UserName, rolename);
                 login.Token = token;
+                login.Id_cliente = isUserValid;
+                login.Password = "";
                 return Ok(login);
             }
 

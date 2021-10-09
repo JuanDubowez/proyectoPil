@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest ,HttpHeaders} from '@angular/common/http';
-
 import { Observable } from 'rxjs';
-import { AuthService } from './Auth/auth.service';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +14,6 @@ export class JwtInterceptor implements HttpInterceptor{
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = this.authService.usuarioAutenticado.Token;
-    debugger
     console.log("INTERCEPTOR WORKING");
 
     if(token) {

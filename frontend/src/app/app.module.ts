@@ -10,9 +10,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LocalidadService } from './servicios/localidad.service';
 import { FormsModule } from '@angular/forms';
 import { DataService } from './services/data.service';
-import { JwtInterceptor } from './servicios/interceptor.service';
-import { ErrorInterceptor } from './servicios/error.service';
+import { JwtInterceptor } from './servicios/Auth/interceptor.service';
+import { ErrorInterceptor } from './servicios/Auth/error.service';
 import { CuentaService } from './services/cuenta.service';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CuentaService } from './services/cuenta.service';
     LayoutModule,
     PagesModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ],
   providers: [ClienteService,LocalidadService,DataService,CuentaService,ClienteService,
    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

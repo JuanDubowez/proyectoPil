@@ -70,9 +70,9 @@ export class LoginComponent {
       .subscribe(
         data => {
         console.log("DATA"+ JSON.stringify( data));
-        //localStorage.setItem('auth-token', JSON.stringify(data ));
+        localStorage.setItem('auth-token', JSON.stringify(data));
 
-        this.router.navigate(['/home']);
+        this.router.navigate(['mi-billetera/home']);
 
         },
         error => {
