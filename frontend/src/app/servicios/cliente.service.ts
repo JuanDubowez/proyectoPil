@@ -66,6 +66,18 @@ export class Cuenta
   id_tipo_cuenta=1;
 }
 
+export class Operacion
+{
+  id_cuenta:number=0;
+  id_tipo_operacion:number=0;
+  monto:any;
+  id_cuenta_destino:number=0;
+  concepto:string="Varios";
+  fecha_hora=new Date();
+  estado:string="Finalizado";
+}
+
+
 export class LoginRequest{
   UserName:string="";
   Password:string="";

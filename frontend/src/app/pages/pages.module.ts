@@ -7,6 +7,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { HomeComponent } from './home/home.component';
 import { MovimientosComponent } from './movimientos/movimientos.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SaldoComponent } from './saldo/saldo.component';
 import { MibilleteraComponent } from './mibilletera/mibilletera.component';
 import { RouterModule } from '@angular/router';
 
@@ -19,6 +20,7 @@ import { RouterModule } from '@angular/router';
     MovimientosComponent,
     ProfileComponent,
     MibilleteraComponent,
+    SaldoComponent,
   ],
   imports: [
     CommonModule, FormsModule, ReactiveFormsModule, RouterModule

@@ -34,6 +34,20 @@ namespace billeteraVirtual.Controllers
             return gestorCuenta.ObtenerCuentaCliente(id_cliente);
         }
 
+        // GET: api/Cuenta/3
+        public int Get3(string cvu)
+        {
+            GestorCuenta gestorCuenta = new GestorCuenta();
+            return gestorCuenta.ObtenerIdCuenta(cvu);
+        }
+
+        // GET: api/Cuenta/4
+        public int Get4(int id_c)
+        {
+            GestorCuenta gestorCuenta = new GestorCuenta();
+            return gestorCuenta.ObtenerIdCuenta2(id_c);
+        }
+
         // POST: api/Cuenta
         public Cuenta Post([FromBody]Cuenta value)
         {
