@@ -1,21 +1,97 @@
-<h1>Ultimos Movimientos</h1>
-<h2>{{hoy|date: "d/M/yy"}}</h2>
+<section>
+  <div class="container-fluid">
+    <div class="card-dinero">
+      <h1 style="background-color: antiquewhite;">Mi billetera</h1>
+      <h2 style="background-color: antiquewhite;">{{hoy|date: "d/M/yy"}}</h2>
 
-<table *ngIf="mostrar_movimientos">
-    <thead>
-        <!-- <th>Operación</th>
-        <th>Monto</th> -->
-        <th>Saldo</th>
-    </thead>
-    <tbody>
-        <tr >
-          <td>{{saldo}}</td>
-            <!-- <td>{{element.TipoMovimiento}}</td>
-            <td>{{element.Monto|currency}}</td>
-            <td>{{element.Id_cuenta|currency}}</td> -->
-        </tr>
-    </tbody>
+      <table *ngIf="mostrar_movimientos">
+          <thead>
+              <!-- <th>Operación</th>
+              <th>Monto</th> -->
+              <th style="background-color: antiquewhite;">Saldo</th>
+          </thead>
+          <tbody>
+              <tr >
+                <td style="background-color: antiquewhite;">{{saldo}}</td>
+                  <!-- <td>{{element.TipoMovimiento}}</td>
+                  <td>{{element.Monto|currency}}</td>
+                  <td>{{element.Id_cuenta|currency}}</td> -->
+              </tr>
+          </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="container-fluid">
+    <div class="card-movimientos">
+            <h1 style="background-color: antiquewhite;">Ultimos Movimientos</h1>
+      <h2>{{hoy|date: "d/M/yy"}}</h2>
 
-</table>
+      <table *ngIf="mostrar_movimientos">
+          <thead>
+              <th style="background-color: antiquewhite;">Operación</th>
+              <th style="background-color: antiquewhite;">Monto</th>
+          </thead>
+          <tbody>
+              <tr *ngFor="let element of movimientos" >
+                  <td>{{element.Id_tipo_operacion}}</td>
+                  <td>{{element.Monto|currency}}</td>
+              </tr>
+          </tbody>
+      </table>
+    </div>
+  </div>
+  <section>
+      <div class="container-fluid">
+        <div class="card-form">
+          <h1 style="background-color: antiquewhite;">Operaciones</h1>
+          <form autocomplete="off" novalidate>
+            <div class="form-group my-4">
+                <div class="form-floating">
+                    <input type="text"  id="floatingInput" placeholder="Ingrese cvu,alias.." />
+
+                    <!-- <div *ngIf="form.controls.email.touched && form.controls.email.errors?.email" style="color: red; margin: 6px;">
+                        Por favor, ingrese bien su correo electronico
+                    </div> -->
+                </div>
+            </div>
+
+            <div class="form-group my-4">
+                <div >
+                  <div  class="form-floating"  style="display:flex;">
+                    <input type="text"  placeholder="Ingrese monto"  />
+
+                    <!-- <i *ngIf="!this.fieldTextType" class="fa fa-eye-slash" style="margin-top: 23px; color: #2182C9;cursor:pointer;" (click)="ocultarPass()"></i>
+                    <i *ngIf="this.fieldTextType" class="fa fa-eye" style="margin-top: 23px; color: #2182C9;cursor:pointer;" (click)="ocultarPass()"></i> -->
+                  </div>
+<!--
+                    <div *ngIf="form.controls.password?.errors  && form.controls.password?.dirty" style="color: red; margin: 6px;"><br>
+                      <p *ngIf="form.controls.password?.hasError('required')" >
+                        La contraeña es requerida.
+                      </p>
+                      <p *ngIf="loginForm.controls.password?.hasError('minlength')">
+                        La contraseña debe terner al menos 8 caracteres.
+                      </p>
+                      <p *ngIf="loginForm.controls.password?.hasError('maxlength')">
+                        La contraseña debe terner como máximo 15 caracteres.
+                      </p>
+                  </div> -->
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center" style="text-align: center; margin: 15px;">
+                <button class="btn btn-primary"  type="submit" role="button">Depositar</button>
+
+                <a class="btn btn-primary" routerLink="/sign-up" routerLinkActive="active" aria-current="page" role="button">Transferir</a>
+            </div>
+        </form>
+        </div>
+      </div>
+  </section>
+
+</section>
+
+
 
 
