@@ -14,10 +14,12 @@ import { JwtInterceptor } from './servicios/Auth/interceptor.service';
 import { ErrorInterceptor } from './servicios/Auth/error.service';
 import { CuentaService } from './services/cuenta.service';
 import { RouterModule } from '@angular/router';
+import { SaldoComponent } from './pages/saldo/saldo.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SaldoComponent
   ],
   imports: [
     BrowserModule,

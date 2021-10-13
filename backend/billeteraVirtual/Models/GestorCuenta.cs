@@ -63,9 +63,12 @@ namespace billeteraVirtual.Models
             return lista;
         }
 
-        public int ObtenerPersonaCuenta(int documento, string cuil, string mail)
+       
+
+        public Cuenta ObtenerCuentaCliente(int number)
         {
             int id = 0;
+            Cuenta cuenta = null;
             string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
 
             using (SqlConnection conn = new SqlConnection(StrConn))
@@ -73,26 +76,74 @@ namespace billeteraVirtual.Models
                 conn.Open();
 
                 SqlCommand comm = conn.CreateCommand();
-                comm.CommandText = "comparar_usuario";
+                comm.CommandText = "obtener_cuenta";
                 comm.CommandType = CommandType.StoredProcedure;
-                comm.Parameters.Add(new SqlParameter("@documento", documento));
-                comm.Parameters.Add(new SqlParameter("@cuil", cuil));
-                comm.Parameters.Add(new SqlParameter("@mail", mail));
+                comm.Parameters.Add(new SqlParameter("@id_cliente", number));
+                
 
                 SqlDataReader dr = comm.ExecuteReader();
 
                 if (dr.Read())
                 {
-                    int id_cliente = dr.GetInt32(0);
+                    int id_cuenta = dr.GetInt32(0);
+                    int id_cliente = dr.GetInt32(1);
+                    string cvu = dr.GetString(2).Trim();
+                    string numero_de_cuenta = dr.GetString(3).Trim();
+                    int saldo = dr.GetInt32(4);
+                    int id_tipo_cuenta = dr.GetInt32(5);
 
-                    id = id_cliente;
+                    cuenta = new Cuenta(id_cuenta,id_cliente,cvu,numero_de_cuenta,saldo,id_tipo_cuenta);
+
+
                 }
 
                 dr.Close();
             }
 
-            return id;
+            return cuenta;
 
         }
+
+
+         public List<Operacion> ObtenerOperacion(int id_cuenta1)
+        {
+            List<Operacion> lista = new List<Operacion>();
+            string StrConn = ConfigurationManager.ConnectionStrings["BDLocal"].ToString();
+
+            using (SqlConnection conn = new SqlConnection(StrConn))
+            {
+                conn.Open();
+
+                SqlCommand comm = conn.CreateCommand();
+                comm.CommandText = "obtener_operacion";
+                comm.CommandType = CommandType.StoredProcedure;
+                comm.Parameters.Add(new SqlParameter("@id_cuenta", id_cuenta1));
+
+
+                SqlDataReader dr = comm.ExecuteReader();
+                while (dr.Read())
+                {
+                    int id_operaciones = dr.GetInt32(0);
+                    int id_cuenta = dr.GetInt32(1);
+                    int id_tipo_operacion = dr.GetInt32(2);
+                    int monto = dr.GetInt32(3);
+                    int id_cuenta_destino = dr.GetInt32(4);
+                    string concepto = dr.GetString(5).Trim();
+                    DateTime fecha_hora= System.DateTime.Now;
+                    string estado = dr.GetString(7).Trim();
+
+                    Operacion operacion = new Operacion(id_operaciones,id_cuenta,id_tipo_operacion,monto,id_cuenta_destino,concepto,fecha_hora,estado);
+                    lista.Add(operacion);
+                }
+
+                dr.Close();
+            }
+
+            return lista;
+        }
+
     }
+        
+
+   
 }
