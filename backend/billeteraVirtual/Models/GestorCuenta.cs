@@ -129,7 +129,7 @@ namespace billeteraVirtual.Models
                     int monto = dr.GetInt32(3);
                     int id_cuenta_destino = dr.GetInt32(4);
                     string concepto = dr.GetString(5).Trim();
-                    DateTime fecha_hora= System.DateTime.Now;
+                    DateTime fecha_hora= dr.GetDateTime(6);
                     string estado = dr.GetString(7).Trim();
 
                     Operacion operacion = new Operacion(id_operaciones,id_cuenta,id_tipo_operacion,monto,id_cuenta_destino,concepto,fecha_hora,estado);
