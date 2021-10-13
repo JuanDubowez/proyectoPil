@@ -8,6 +8,7 @@ import {
   ClienteService,
   Cuenta,
   LoginRequest,
+  Operacion,
 } from 'src/app/servicios/cliente.service';
 import { LocalidadService } from 'src/app/servicios/localidad.service';
 
@@ -27,6 +28,8 @@ export class SaldoComponent implements OnInit {
   id_cuenta: number = 0;
   form: FormGroup;
   usuario: LoginRequest = new LoginRequest();
+  operacion: Operacion = new Operacion();
+  mostrarIdDestino: any = false;
   constructor(
     private formBuilder: FormBuilder,
     private menuSrv: DataService,
@@ -37,12 +40,16 @@ export class SaldoComponent implements OnInit {
     private cuentaService: CuentaService
   ) {
     this.form = this.formBuilder.group({
-      cvu: ['', [Validators.required]],
-      monto: ['', [Validators.required]],
+      monto:['',[Validators.required]],
+      cvu:[''],
     });
   }
 
   ngOnInit(): void {
+    this.onCargarDatos();
+  }
+
+  onCargarDatos () {
     this.id_log = localStorage.getItem('auth-id');
     this.cuentaService.ObtenerCuentaCliente(this.id_log).subscribe((res) => {
       console.log(res);
@@ -70,8 +77,72 @@ export class SaldoComponent implements OnInit {
     });
   }
 
+  onSelectOperacion(tipoOperacion: any):void {
+    console.log(tipoOperacion);
+    this.operacion.id_tipo_operacion = tipoOperacion;
+    console.log(this.operacion.id_tipo_operacion);
+    if (tipoOperacion == 1) {
+      this.mostrarIdDestino = true;
+    } else {
+      this.mostrarIdDestino = false;
+    }
+  }
+
   //otros metodos
   onEnviar(event: Event, cuenta: Cuenta) {
+    this.id_log = localStorage.getItem('auth-id');
     //logica
   }
+  onEnviarOperacion(event: Event, operacion:Operacion): void
+  {
+    event.preventDefault;
+
+    if (this.form.valid)
+    {
+      console.log(operacion);
+      this.id_log= Number(localStorage.getItem('auth-id'));
+      console.log(this.operacion.id_cuenta);
+      console.log(this.form.value.cvu);
+      this.cuentaService.ObtenerCuentaIdCliente(this.id_log).subscribe(
+        data => {
+          this.operacion.id_cuenta = data;
+          if (this.operacion.id_tipo_operacion == 1) {
+            this.cuentaService.ObtenerCuentaCvu(this.form.value.cvu).subscribe(
+              data => {
+                this.operacion.id_cuenta_destino = data;
+                console.log(this.operacion.id_cuenta_destino);
+                this.cuentaService.InsertarOperacion(operacion).subscribe(
+                  data => {
+                    console.log(data);
+                    this.onCargarDatos();
+                  }
+                )
+              }
+            )
+          } else {
+            this.cuentaService.InsertarOperacion(operacion).subscribe(
+              data => {
+                console.log(data);
+                this.onCargarDatos();
+              }
+            )
+          }
+        }
+        
+      )
+    }
+    else
+    {
+      this.form.markAllAsTouched(); 
+    }  
+  }
+
+  get montoField() {
+    return this.form.get("monto");
+  }
+
+  get montoInvalid() {
+    return this.montoField?.touched && !this.montoField.valid;
+  }
+
 }

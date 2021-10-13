@@ -19,7 +19,6 @@ import { SaldoComponent } from './pages/saldo/saldo.component';
 @NgModule({
   declarations: [
     AppComponent,
-    SaldoComponent
   ],
   imports: [
     BrowserModule,

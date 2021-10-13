@@ -20,7 +20,7 @@ namespace billeteraVirtual.Models
 
                 SqlCommand comm = conn.CreateCommand();
                 comm.CommandText = "insertar_operacion";
-                comm.Parameters.Add(new SqlParameter("@id_operaciones", operacion.Id_operaciones));
+                comm.CommandType = CommandType.StoredProcedure;
                 comm.Parameters.Add(new SqlParameter("@id_cuenta", operacion.Id_cuenta));
                 comm.Parameters.Add(new SqlParameter("@id_tipo_operacion", operacion.Id_tipo_operacion));
                 comm.Parameters.Add(new SqlParameter("@monto", operacion.Monto));
