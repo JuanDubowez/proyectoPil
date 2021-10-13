@@ -6,6 +6,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { MibilleteraComponent } from './pages/mibilletera/mibilletera.component';
 import { MovimientosComponent } from './pages/movimientos/movimientos.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { SaldoComponent } from './pages/saldo/saldo.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { AuthGuard } from './servicios/Auth/auth.guard';
 
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path:'movimientos', component: MovimientosComponent},
   {path: 'profile', component: ProfileComponent},
+  {path:'saldo',component:SaldoComponent},
 ]},
   {path: 'sign-up', component: SignUpComponent},
   {path: '', component: LandingPageComponent},

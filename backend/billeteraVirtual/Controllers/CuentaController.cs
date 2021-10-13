@@ -20,11 +20,18 @@ namespace billeteraVirtual.Controllers
             return gCuenta.ObtenerCuentas();
         }
 
-        // GET: api/Cuenta/5
-        public int Get(int documento, string cuil, string mail)
+        // GET: api/Cuenta/1
+        public IEnumerable<Operacion> Get(int id_cuenta)
+        {
+            GestorCuenta gCuenta = new GestorCuenta();
+            return gCuenta.ObtenerOperacion(id_cuenta);
+        }
+
+        // GET: api/Cuenta/2
+        public Cuenta Get2(int id_cliente)
         {
             GestorCuenta gestorCuenta = new GestorCuenta();
-            return gestorCuenta.ObtenerPersonaCuenta(documento, cuil, mail);
+            return gestorCuenta.ObtenerCuentaCliente(id_cliente);
         }
 
         // POST: api/Cuenta

@@ -1,0 +1,21 @@
+<h1>Ultimos Movimientos</h1>
+<h2>{{hoy|date: "d/M/yy"}}</h2>
+
+<table *ngIf="mostrar_movimientos">
+    <thead>
+        <!-- <th>Operación</th>
+        <th>Monto</th> -->
+        <th>Saldo</th>
+    </thead>
+    <tbody>
+        <tr >
+          <td>{{saldo}}</td>
+            <!-- <td>{{element.TipoMovimiento}}</td>
+            <td>{{element.Monto|currency}}</td>
+            <td>{{element.Id_cuenta|currency}}</td> -->
+        </tr>
+    </tbody>
+
+</table>
+
+
