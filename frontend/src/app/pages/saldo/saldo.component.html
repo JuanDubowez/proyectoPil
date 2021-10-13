@@ -1,17 +1,17 @@
 <div class="row justify-content-around container-fluid d-flex justify-content-center align-items-center h-100">
-  <div class="col-4 box card p-3 py-4">
-      <h1>Mi billetera</h1>
-      <h2>{{hoy|date: "d/M/yy"}}</h2>
+  <div class="col-4 box card p-3 py-4" style="height: 217px;">
+      <h1 class="titulo">Mi billetera</h1>
+      <h2 class="titulo">{{hoy|date: "d/M/yy"}}</h2>
 
       <table *ngIf="mostrar_movimientos">
           <thead>
               <!-- <th>Operación</th>
               <th>Monto</th> -->
-              <th >Saldo</th>
+              <th class="titulo" ><h3 class="titulo">Saldo</h3></th>
           </thead>
           <tbody>
               <tr >
-                <td >{{saldo|currency}}</td>
+                <td class="titulo"><h4 class="titulo">{{saldo|currency}}</h4></td>
                   <!-- <td>{{element.TipoMovimiento}}</td>
                   <td>{{element.Monto|currency}}</td>
                   <td>{{element.Id_cuenta|currency}}</td> -->
@@ -54,20 +54,20 @@
   <div class="box card p-3 py-4">
     <div class="container-fluid">
       <div class="card-movimientos">
-              <h1>Ultimos Movimientos</h1>
-        <h2>{{hoy|date: "d/M/yy"}}</h2>
+              <h1 class="titulo">Ultimos Movimientos</h1>
+        <h2 class="titulo">{{hoy|date: "d/M/yy"}}</h2>
   
-        <table *ngIf="mostrar_movimientos">
-            <thead>
+        <table class="table table-striped" *ngIf="mostrar_movimientos">
+            <thead style="background-color: #2182C9;">
                 <th>Operación</th>
-                <th>Monto</th>
-                <th>Fecha</th>
+                <th style="padding-left: 40px;">Monto</th>
+                <th style="padding-left: 40px;">Fecha</th>
             </thead>
             <tbody>
                 <tr *ngFor="let element of movimientos" >
                     <td>{{element.Id_tipo_operacion}}</td>
-                    <td>{{element.Monto|currency}}</td>
-                    <td>{{element.Fecha_hora}}</td>
+                    <td style="padding-left: 40px;">{{element.Monto|currency}}</td>
+                    <td style="padding-left: 40px;">{{element.Fecha_hora |date:"short"}}</td>
                 </tr>
             </tbody>
         </table>

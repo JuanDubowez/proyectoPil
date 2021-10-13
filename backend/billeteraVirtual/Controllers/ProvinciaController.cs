@@ -9,7 +9,7 @@ using billeteraVirtual.Models;
 
 namespace billeteraVirtual.Controllers
 {
-    [Authorize]
+    [AllowAnonymous]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ProvinciaController : ApiController
     {

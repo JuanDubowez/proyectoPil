@@ -11,7 +11,7 @@ namespace billeteraVirtual.Controllers
 {
     public class LocalidadController : ApiController
     {
-        [Authorize]
+        [AllowAnonymous]
         [EnableCors(origins: "*", headers: "*", methods: "*")]
         // GET: api/Localidad
         public IEnumerable<Localidad> Get()

@@ -65,13 +65,16 @@ export class SaldoComponent implements OnInit {
             console.log(this.saldo);
             //deposito
             if (this.movimientos[n]['Id_tipo_operacion'] == 1) {
-              this.saldo = this.saldo - this.movimientos[n]['Monto'];
+              if(this.movimientos[n]['Id_cuenta'] == this.id_log) {
+                this.saldo = this.saldo - this.movimientos[n]['Monto'];
+              } else {
+                this.saldo = this.saldo + this.movimientos[n]['Monto'];
+              }
               //transferencia
             } else if (this.movimientos[n]['Id_tipo_operacion'] == 2) {
               this.saldo = this.saldo + this.movimientos[n]['Monto'];
             }
             console.log(this.saldo);
-            //
           }
         });
     });
